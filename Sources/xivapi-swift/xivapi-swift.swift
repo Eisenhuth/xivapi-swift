@@ -37,6 +37,32 @@ public extension xivapiClient {
         
         return response
     }
+    
+    func search(queryItems: [URLQueryItem]) async -> XivSearchResult?{
+        let url = Endpoint.search(queryItems: queryItems, private_key: private_key).url!
+        let response: XivSearchResult? = await loadData(url)
+        
+        return response
+    }
+    
+    func search(searchString: String) async -> XivSearchResult?{
+        let queryItems = [URLQueryItem(name: "string", value: searchString)]
+        let url = Endpoint.search(queryItems: queryItems, private_key: private_key).url!
+        let response: XivSearchResult? = await loadData(url)
+        
+        return response
+    }
+    
+    func search(searchString: String, index: XivSearchIndexes) async -> XivSearchResult?{
+        let queryItems = [
+            URLQueryItem(name: "string", value: searchString),
+            URLQueryItem(name: "indexes", value: index.rawValue)
+        ]
+        let url = Endpoint.search(queryItems: queryItems, private_key: private_key).url!
+        let response: XivSearchResult? = await loadData(url)
+        
+        return response
+    }
 }
 
 

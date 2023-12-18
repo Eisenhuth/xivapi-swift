@@ -18,6 +18,10 @@ public extension Endpoint {
     static func recipe(id: Int, queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
         return Endpoint(path: "/recipe/\(id)", queryItems: queryItems, private_key: private_key)
     }
+    
+    static func search(queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
+        return Endpoint(path: "/search", queryItems: queryItems, private_key: private_key)
+    }
 }
 
 extension Endpoint {
