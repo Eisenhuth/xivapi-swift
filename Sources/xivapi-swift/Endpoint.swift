@@ -11,6 +11,10 @@ public extension Endpoint {
         return Endpoint(path: "/item/\(itemId)", queryItems: queryItems, private_key: private_key)
     }
     
+    static func npcResident(id: Int, queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
+        return Endpoint(path: "/ENpcResident/\(id)", queryItems: queryItems, private_key: private_key)
+    }
+    
     static func npcYell(id: Int, queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
         return Endpoint(path: "/NpcYell/\(id)", queryItems: queryItems, private_key: private_key)
     }
@@ -21,6 +25,10 @@ public extension Endpoint {
     
     static func search(queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
         return Endpoint(path: "/search", queryItems: queryItems, private_key: private_key)
+    }
+    
+    static func specialshop(id: Int, queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
+        return Endpoint(path: "/specialshop/\(id)", queryItems: queryItems, private_key: private_key)
     }
 }
 

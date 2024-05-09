@@ -9,7 +9,7 @@ public func loadData<T: Decodable>(_ url: URL) async -> T? {
         return decoded
         
     } catch {
-        print("error loading data\n\(url)\n\(error.localizedDescription)")
+        print("error loading data\n\(url)\n\(error)")
     }
     
     return nil

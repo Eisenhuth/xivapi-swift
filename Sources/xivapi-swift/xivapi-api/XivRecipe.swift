@@ -12,8 +12,8 @@ public struct XivRecipe: Codable{
     public let AmountIngredient8: Int?
     public let AmountIngredient9: Int?
     public let AmountResult: Int?
-    //public let ClassJob: XivClassJob?
-    //public let CraftType: XivCraftType?
+    public let ClassJob: XivClassJob?
+    public let CraftType: XivCraftType?
     public let ItemIngredient0: XivItem?
     public let ItemIngredient1: XivItem?
     public let ItemIngredient2: XivItem?

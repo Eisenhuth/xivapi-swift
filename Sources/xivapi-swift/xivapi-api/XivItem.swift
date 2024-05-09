@@ -17,27 +17,29 @@ public struct XivItem : Codable {
     public let PriceLow: Int? //price to sell to vendor
     public let PriceMid: Int? //price to buy from vendor
     public let Rarity: Int?
-    //TODO: //public var ClassJobUse: XivClassJobUse?
-    //TODO: //public let GameContentLinks: XivGameContentLinks?
+    public let ClassJobUse: XivClassJobUse?
+    //TODO: fix this - public let GameContentLinks: [XivGameContentLinks]?
     public let GamePatch: XivGamePatch?
-    //TODO: //public var ItemKind: XivItemKind?
-    //TODO: //public var ItemSearchCategory: XivItemSearchCategory?
-    public var Recipes: [Recipe]?
+    public let ItemKind: XivItemKind?
+    public let ItemSearchCategory: XivItemSearchCategory?
+    public let ItemUICategory: XivItemUICategory?
+    public let Recipes: [XivItemRecipe]?
     
 }
 
-public extension XivItem {
-    struct Recipe : Codable {
-        public var ClassJobID: Int?
-        public var ID: Int?
-        public var Level: Int?
-    }
+public struct XivItemRecipe : Codable, Hashable {
+    public let ClassJobID: Int?
+    public let ID: Int?
+    public let Level: Int?
 }
 
 public extension XivItem{
     var isCraftable: Bool { Recipes != nil}
-    var canBeHQ: Bool { CanBeHq == 1 ? true : false }
+    //var isVendorItem: Bool { GameContentLinks?.GilShopItem != nil || GameContentLinks?.GCScripShopItem != nil }
+    //var vendorPrice: Int? { isVendorItem ? PriceLow : nil }
+    var canBeHQ: Bool { CanBeHq == 1 }
     var iconUrl: URL? { Icon != nil ? URL(string: "https://xivapi.com\(Icon!)") : nil }
     var iconUrlHD: URL? { IconHD != nil ? URL(string:  "https://xivapi.com\(IconHD!)") : nil }
+    var descriptionWithoutTags: String? { Description?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil) ?? nil }
 }
  
