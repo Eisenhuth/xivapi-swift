@@ -16,7 +16,7 @@ public struct XivPagination: Codable {
     public let ResultsTotal: Int?
 }
 
-public struct XivResult: Codable {
+public struct XivResult: Codable, Hashable {
     public let ID: Int?
     public let Icon: String?
     public let Name: String?
