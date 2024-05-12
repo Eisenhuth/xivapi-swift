@@ -58,10 +58,8 @@ public extension xivapiClient {
     func search(queryItems: [URLQueryItem]) async -> XivSearchResult?{
         let url = Endpoint.search(queryItems: queryItems, private_key: private_key).url!
         var response: XivSearchResult? = await loadData(url)
+        await getAdditionalPages(url: url, response: &response)
         
-        if #available(iOS 16.0, *) {
-            response = await getAdditionalPages(url: url, response: &response)
-        }
         return response
     }
     
@@ -72,10 +70,8 @@ public extension xivapiClient {
         let queryItems = [URLQueryItem(name: "string", value: searchString)]
         let url = Endpoint.search(queryItems: queryItems, private_key: private_key).url!
         var response: XivSearchResult? = await loadData(url)
+        await getAdditionalPages(url: url, response: &response)
         
-        if #available(iOS 16.0, *) {
-            response = await getAdditionalPages(url: url, response: &response)
-        }
         return response
     }
     
@@ -89,12 +85,11 @@ public extension xivapiClient {
             URLQueryItem(name: "string", value: searchString),
             URLQueryItem(name: "indexes", value: index.rawValue)
         ]
+        
         let url = Endpoint.search(queryItems: queryItems, private_key: private_key).url!
         var response: XivSearchResult? = await loadData(url)
+        await getAdditionalPages(url: url, response: &response)
         
-        if #available(iOS 16.0, *) {
-            response = await getAdditionalPages(url: url, response: &response)
-        }
         return response
     }
     
@@ -109,36 +104,29 @@ public extension xivapiClient {
             URLQueryItem(name: "indexes", value: indexes.map { $0.rawValue }.joined(separator: ","))
         ]
         
-        var responses = [XivSearchResult]()
-        
         let url = Endpoint.search(queryItems: queryItems, private_key: private_key).url!
         var response: XivSearchResult? = await loadData(url)
-        
-        if #available(iOS 16.0, *) {
-            response = await getAdditionalPages(url: url, response: &response)
-        }
+        await getAdditionalPages(url: url, response: &response)
         
         return response
     }
     
-    @available(iOS 16.0, *) //I should probably improve this at some point
-    func getAdditionalPages(url: URL, response: inout XivSearchResult?) async -> XivSearchResult?{
-        if let pagination = response?.Pagination {
-            if let pageTotal = pagination.PageTotal {
-                if pageTotal > 1 {
-                    for page in 1..<pageTotal {
-                        let pageQuery = URLQueryItem(name: "page", value: (page+1).description)
-                        let pageUrl = url.appending(queryItems: [pageQuery])
-                        let pageResponse: XivSearchResult? = await loadData(url)
-                        if let pageResults = pageResponse?.Results {
-                            response?.Results?.append(contentsOf: pageResults)
-                        }
+    //I should probably improve this at some point
+    func getAdditionalPages(url: URL, response: inout XivSearchResult?) async -> Void{
+                
+        if let pageTotal = response?.Pagination?.PageTotal {
+            if pageTotal > 1 {
+                for page in 1...pageTotal {
+                    let pageQuery = URLQueryItem(name: "page", value: (page).description)
+                    let pageUrl = url.appending(queryItems: [pageQuery])
+                    let pageResponse: XivSearchResult? = await loadData(url)
+                    if let pageResults = pageResponse?.Results {
+                        response?.Results?.append(contentsOf: pageResults)
                     }
                 }
             }
         }
         
-        return response
     }
 }
 
