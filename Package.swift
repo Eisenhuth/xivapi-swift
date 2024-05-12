@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "xivapi-swift",
-    platforms: [.iOS(.v15), .macOS(.v12), .visionOS(.v1)],
+    platforms: [.iOS(.v16), .macOS(.v13), .visionOS(.v1)],
     products: [
         .library(
             name: "xivapi-swift",
