@@ -1,7 +1,7 @@
 import Foundation
 
 public struct Item: Codable {
-    public let schema: String
+    public let schema: String?
     public let row_id: Int
     public let fields: ItemFields
 }
