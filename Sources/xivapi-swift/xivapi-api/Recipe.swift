@@ -12,7 +12,7 @@ public extension Recipe {
     var canHq: Bool { fields.CanHq }
     var canQuickSynth: Bool { fields.CanQuickSynth }
     var craftType: String { fields.CraftType.name }
-    var rawIngredients: [Item] { fields.Ingredient }
+    var rawIngredients: [RecipeIngredient] { fields.Ingredient}
     var recipeLevelTable: RecipeLevelTable { fields.RecipeLevelTable }
     
     var ingredients: [Ingredient] {
@@ -20,8 +20,8 @@ public extension Recipe {
         var _ingredients = [Ingredient]()
         
         for i in 0..<10 {
-            if fields.AmountIngredient[i] != 0 {
-                _ingredients.append(Ingredient(amount: fields.AmountIngredient[i], item: fields.Ingredient[i]))
+            if fields.AmountIngredient[i] != 0 && fields.Ingredient[i].value > 0 {
+                _ingredients.append(Ingredient(amount: fields.AmountIngredient[i], itemId: fields.Ingredient[i].value))
             }
         }
         
@@ -35,7 +35,7 @@ public struct RecipeFields: Codable {
     public let CanHq: Bool
     public let CanQuickSynth: Bool
     public let CraftType: CraftType
-    public let Ingredient: [Item]
+    public let Ingredient: [RecipeIngredient]
     public let IsExpert: Bool
     public let IsSecondary: Bool
     public let IsSpecializationRequired: Bool
@@ -46,6 +46,10 @@ public struct RecipeFields: Codable {
     public let RequiredCraftsmanship: Int
 //    public let SecretRecipeBook: SecretRecipeBook
     
+}
+
+public struct RecipeIngredient: Codable {
+    public let value: Int
 }
 
 public struct CraftType: Codable {
@@ -80,18 +84,18 @@ public struct RecipeLevelTable: Codable {
 
 public struct Ingredient: Codable, Hashable, Identifiable {
     public var amount: Int
-    public var item: Item
+    public var itemId: Int
 }
 
 public extension Ingredient {
     public var id: UUID { UUID() }
     
     public static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
-        return lhs.item.row_id == rhs.item.row_id
+        return lhs.itemId == rhs.itemId
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(item.row_id ?? 0)
+        hasher.combine(itemId)
     }
 }
 
