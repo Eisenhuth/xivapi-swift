@@ -1,19 +1,19 @@
 import Foundation
 
 public struct LegacySearchResult: Codable {
-    public let Pagination: XivPagination?
+    public var Pagination: XivPagination?
     public var Results: [XivResult]?
-    public let SpeedMs: Int?
+    public var SpeedMs: Int?
 }
 
 public struct XivPagination: Codable {
-    public let Page: Int?
-    public let PageNext: Int?
-    public let PagePrev: Int?
-    public let PageTotal: Int?
-    public let Results: Int?
-    public let ResultsPerPage: Int?
-    public let ResultsTotal: Int?
+    public var Page: Int?
+    public var PageNext: Int?
+    public var PagePrev: Int?
+    public var PageTotal: Int?
+    public var Results: Int?
+    public var ResultsPerPage: Int?
+    public var ResultsTotal: Int?
 }
 
 public struct XivResult: Codable, Hashable {

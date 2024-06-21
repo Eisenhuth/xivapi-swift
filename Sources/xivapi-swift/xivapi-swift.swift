@@ -54,7 +54,7 @@ public extension xivapiClient {
     ///   - searchString: search string
     ///   - indexes: search indexes
     /// - Returns: search results
-    func search(searchString: String, indexes: [XivSearchIndexes]) async -> [XivResult]?{
+    func searchAllPages(searchString: String, indexes: [XivSearchIndexes]) async -> [XivResult]?{
         var queryItems = [
             URLQueryItem(name: "string", value: searchString),
             URLQueryItem(name: "indexes", value: indexes.map { $0.rawValue }.joined(separator: ","))
@@ -75,6 +75,22 @@ public extension xivapiClient {
         
         return results
     }
+    
+    func search(searchString: String, indexes: [XivSearchIndexes], queryItems: [URLQueryItem]?) async -> LegacySearchResult?{
+        var queries = [
+            URLQueryItem(name: "string", value: searchString),
+            URLQueryItem(name: "indexes", value: indexes.map { $0.rawValue }.joined(separator: ","))
+        ]
+        if let queryItems { queries.append(contentsOf: queryItems) }
+        
+        let url = LegacyEndpoint.search(queryItems: queries, private_key: private_key).url!
+        var response: LegacySearchResult? = await loadData(url)
+        
+        let test = LegacyEndpoint.search
+        
+        return response
+    }
+
 }
 
 
