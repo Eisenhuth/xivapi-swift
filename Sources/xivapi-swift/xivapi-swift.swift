@@ -10,124 +10,87 @@ public class xivapiClient {
 
 public extension xivapiClient {
     
-    func getItem(itemId: Int, queryItems: [URLQueryItem]? = nil) async -> XivItem?{
-        let url = Endpoint.item(itemId: itemId, queryItems: queryItems, private_key: private_key).url!
-        let response: XivItem? = await loadData(url)
+    func getItem(_ id: Int) async -> Item? {
+        let url = Endpoint.sheet(.Item, id: id, queryItems: nil, private_key: private_key)!
+        let response: Item? = await loadData(url)
         
         return response
     }
     
-    func getItemName(itemId: Int) async -> XivItem?{
-        let url = Endpoint.item(itemId: itemId, queryItems: [URLQueryItem(name: "columns", value: "Name")], private_key: private_key).url!
-        let response: XivItem? = await loadData(url)
+    func getItem(_ id: Int, queryItems: [URLQueryItem]? = nil) async -> Item? {
+        let url = Endpoint.sheet(.Item, id: id, queryItems: queryItems, private_key: private_key)!
+        let response: Item? = await loadData(url)
         
         return response
     }
     
-    func getNpcResident(id: Int, queryItems: [URLQueryItem]? = nil) async -> XivENpcResident?{
-        let url = Endpoint.npcResident(id: id, queryItems: queryItems, private_key: private_key).url!
-        let response: XivENpcResident? = await loadData(url)
+    func getRecipe(_ id: Int, queryItems: [URLQueryItem]? = nil) async -> Recipe? {
+        let url = Endpoint.sheet(.Recipe, id: id, queryItems: queryItems, private_key: private_key)!
+        let response: Recipe? = await loadData(url)
         
         return response
     }
     
-    func getNpcYell(id: Int, queryItems: [URLQueryItem]? = nil) async -> XivNpcYell?{
-        let url = Endpoint.npcYell(id: id, queryItems: queryItems, private_key: private_key).url!
-        let response: XivNpcYell? = await loadData(url)
+    func getSheet<T: Codable>(_ sheet: Sheets, id: Int, queryItems: [URLQueryItem]? = nil) async -> T? {
+        let url = Endpoint.sheet(sheet, id: id, queryItems: queryItems, private_key: private_key)!
+        let response: T? = await loadData(url)
         
         return response
     }
     
-    func getRecipe(id: Int, queryItems: [URLQueryItem]? = nil) async -> XivRecipe?{
-        let url = Endpoint.recipe(id: id, queryItems: queryItems, private_key: private_key).url!
-        let response: XivRecipe? = await loadData(url)
-        
-        return response
+    func getItemRecipes(itemId: Int) async -> [Int]? {
+        await getItemRecipeDict()[itemId]
     }
     
-    func getSpecialShop(id: Int, queryItems: [URLQueryItem]? = nil) async -> XivSpecialShop?{
-        let url = Endpoint.specialshop(id: id, queryItems: queryItems, private_key: private_key).url!
-        let response: XivSpecialShop? = await loadData(url)
-        
-        return response
+    func getItemRecipeDict() async -> [Int : [Int]] {
+        Bundle.module.decode("itemRecipeDict.json") as [Int : [Int]]
     }
-    
-    /// search using  custom query items
-    /// - Parameter queryItems: query items
-    /// - Returns: search results
-    func search(queryItems: [URLQueryItem]) async -> XivSearchResult?{
-        let url = Endpoint.search(queryItems: queryItems, private_key: private_key).url!
-        var response: XivSearchResult? = await loadData(url)
-        await getAdditionalPages(url: url, response: &response)
-        
-        return response
-    }
-    
-    /// search using  a search string
-    /// - Parameter searchString: search string
-    /// - Returns: search results
-    func search(searchString: String) async -> XivSearchResult?{
-        let queryItems = [URLQueryItem(name: "string", value: searchString)]
-        let url = Endpoint.search(queryItems: queryItems, private_key: private_key).url!
-        var response: XivSearchResult? = await loadData(url)
-        await getAdditionalPages(url: url, response: &response)
-        
-        return response
-    }
-    
-    /// search using a search string and a single search index
-    /// - Parameters:
-    ///   - searchString: search string
-    ///   - index: search index
-    /// - Returns: search results
-    func search(searchString: String, index: XivSearchIndexes) async -> XivSearchResult?{
-        let queryItems = [
-            URLQueryItem(name: "string", value: searchString),
-            URLQueryItem(name: "indexes", value: index.rawValue)
-        ]
-        
-        let url = Endpoint.search(queryItems: queryItems, private_key: private_key).url!
-        var response: XivSearchResult? = await loadData(url)
-        await getAdditionalPages(url: url, response: &response)
-        
-        return response
-    }
-    
+}
+
+public extension xivapiClient {
+       
     /// search using a search string and multiple search indexes
     /// - Parameters:
     ///   - searchString: search string
     ///   - indexes: search indexes
     /// - Returns: search results
-    func search(searchString: String, indexes: [XivSearchIndexes]) async -> XivSearchResult?{
+    func searchAllPages(searchString: String, indexes: [XivSearchIndexes]) async -> [XivResult]?{
         var queryItems = [
             URLQueryItem(name: "string", value: searchString),
             URLQueryItem(name: "indexes", value: indexes.map { $0.rawValue }.joined(separator: ","))
         ]
         
-        let url = Endpoint.search(queryItems: queryItems, private_key: private_key).url!
-        var response: XivSearchResult? = await loadData(url)
-        await getAdditionalPages(url: url, response: &response)
+        let url = LegacyEndpoint.search(queryItems: queryItems, private_key: private_key).url!
+        var response: LegacySearchResult? = await loadData(url)
+        var results = [XivResult]()
+        results.append(contentsOf: response?.Results ?? [])
+        
+        while response?.Pagination?.PageNext != nil {
+            let nextPageUrl = url.appending(queryItems: [URLQueryItem(name: "page", value: response?.Pagination?.PageNext?.description)])
+            
+            response = await loadData(nextPageUrl)
+            if response == nil { response = await loadData(nextPageUrl) } //attempt again, this shouldn't happen.
+            results.append(contentsOf: response?.Results ?? [])
+        }
+        
+        return results
+    }
+    
+    func search(searchString: String, indexes: [XivSearchIndexes], queryItems: [URLQueryItem]?) async -> LegacySearchResult?{
+        var queries = [
+            URLQueryItem(name: "string", value: searchString),
+            URLQueryItem(name: "indexes", value: indexes.map { $0.rawValue }.joined(separator: ","))
+        ]
+        if let queryItems { queries.append(contentsOf: queryItems) }
+        
+        let url = LegacyEndpoint.search(queryItems: queries, private_key: private_key).url!
+        var response: LegacySearchResult? = await loadData(url)
+        
+        let test = LegacyEndpoint.search
         
         return response
     }
-    
-    //I should probably improve this at some point
-    func getAdditionalPages(url: URL, response: inout XivSearchResult?) async -> Void{
-                
-        if let pageTotal = response?.Pagination?.PageTotal {
-            if pageTotal > 1 {
-                for page in 1...pageTotal {
-                    let pageQuery = URLQueryItem(name: "page", value: (page).description)
-                    let pageUrl = url.appending(queryItems: [pageQuery])
-                    let pageResponse: XivSearchResult? = await loadData(url)
-                    if let pageResults = pageResponse?.Results {
-                        response?.Results?.append(contentsOf: pageResults)
-                    }
-                }
-            }
-        }
-        
-    }
+
 }
 
 

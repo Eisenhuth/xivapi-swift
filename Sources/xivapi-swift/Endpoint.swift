@@ -1,43 +1,33 @@
 import Foundation
 
 public struct Endpoint {
-    let path: String
-    let queryItems: [URLQueryItem]?
-    let private_key: String?
+    let sheet: Sheets
+    let id: Int
+    var queryItems: [URLQueryItem]? = nil
+    var private_key: String? = nil
 }
 
 public extension Endpoint {
-    static func item(itemId: Int, queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
-        return Endpoint(path: "/item/\(itemId)", queryItems: queryItems, private_key: private_key)
+    
+    static func sheet(_ sheet: Sheets, id: Int, queryItems: [URLQueryItem]?, private_key: String?) -> URL? {
+        return Endpoint(sheet: sheet, id: id, queryItems: queryItems, private_key: private_key).url
     }
     
-    static func npcResident(id: Int, queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
-        return Endpoint(path: "/ENpcResident/\(id)", queryItems: queryItems, private_key: private_key)
+    static func sheet(_ sheet: Sheets, id: Int) -> URL?{
+        return Endpoint(sheet: sheet, id: id).url
     }
     
-    static func npcYell(id: Int, queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
-        return Endpoint(path: "/NpcYell/\(id)", queryItems: queryItems, private_key: private_key)
-    }
-    
-    static func recipe(id: Int, queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
-        return Endpoint(path: "/recipe/\(id)", queryItems: queryItems, private_key: private_key)
-    }
-    
-    static func search(queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
-        return Endpoint(path: "/search", queryItems: queryItems, private_key: private_key)
-    }
-    
-    static func specialshop(id: Int, queryItems: [URLQueryItem]?, private_key: String?) -> Endpoint{
-        return Endpoint(path: "/specialshop/\(id)", queryItems: queryItems, private_key: private_key)
+    static func asset(at path: String) -> URL?{
+        var components = URLComponents(string: "https://beta.xivapi.com/api/1/asset/\(path)")!
+        components.queryItems = [URLQueryItem(name: "format", value: "png")]
+        
+        return components.url
     }
 }
 
 extension Endpoint {
     var url: URL? {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "xivapi.com"
-        components.path = path
+        var components = URLComponents(string: "https://beta.xivapi.com/api/1/sheet/\(sheet)/\(id)")!
         
         if queryItems != nil {
             components.queryItems = queryItems
@@ -53,6 +43,6 @@ extension Endpoint {
             
         }
         
-        return components.url!
+        return components.url
     }
 }

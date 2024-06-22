@@ -11,7 +11,10 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "xivapi-swift"
+            name: "xivapi-swift",
+            resources: [
+                .process("Resources")
+            ]
         )
     ]
 )
