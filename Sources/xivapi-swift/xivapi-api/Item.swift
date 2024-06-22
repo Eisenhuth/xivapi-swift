@@ -30,13 +30,58 @@ public extension Item {
     var priceMid: Int { fields.PriceMid }
     var rarity: Int { fields.Rarity }
     var stackSize: Int { fields.StackSize }
+    
+    var itemUICategory: ItemUICategory { fields.ItemUICategory }
+    var additionalData: AdditionalData? { fields.AdditionalData }
+    var bonuses: [Stat] {
+        
+        var _stats = [Stat]()
+        
+        for i in 0..<fields.BaseParamValue.count {
+            let name = fields.BaseParam[i].fields.Name
+            let value = fields.BaseParamValue[i]
+            
+            _stats.append(Stat(name: name, value: value))
+        }
+        
+        return _stats.filter { $0.value != 0 }
+    }
+    
+    var stats: Stats {
+        .init(block: fields.Block, blockRate: fields.BlockRate, damageMag: fields.DamageMag, damagePhys: fields.DamagePhys, defenseMag: fields.DefenseMag, defensePhys: fields.DefensePhys, delayms: fields.Delayms)
+    }
+}
+
+public struct Stat {
+    public let name: String
+    public let value: Int
+}
+
+public struct Stats {
+    public let block: Int
+    public let blockRate: Int
+    public let damageMag: Int
+    public let damagePhys: Int
+    public let defenseMag: Int
+    public let defensePhys: Int
+    public let delayms: Int
 }
 
 
 public struct ItemFields: Codable {
+    public let AdditionalData: AdditionalData?
     public let CanBeHq: Bool
+    public let BaseParam: [BaseParam]
+    public let BaseParamValue: [Int]
+    public let Block: Int
+    public let BlockRate: Int
 //    public let ClassJobCategory: ClassJobCategory
     public let Cooldowns: Int
+    public let DamageMag: Int
+    public let DamagePhys: Int
+    public let DefenseMag: Int
+    public let DefensePhys: Int
+    public let Delayms: Int
     public let Description: String
 //    public let EquipSlotCategory: EquipSlotCategory
     public let Icon: Icon
@@ -50,7 +95,7 @@ public struct ItemFields: Codable {
     public let IsUnique: Bool
     public let IsUntradable: Bool
 //    public let ItemSearchCategory: ItemSearchCategory
-//    public let ItemUICategory: ItemUICategory
+    public let ItemUICategory: ItemUICategory
     public let LevelEquip: Int
     public let LevelItem: LevelItem
     public let Name: String
@@ -58,6 +103,30 @@ public struct ItemFields: Codable {
     public let PriceMid: Int
     public let Rarity: Int
     public let StackSize: Int
+}
+
+public struct AdditionalData: Codable {
+    public let value: Int?
+    public let sheet: String?
+    public let row_id: Int?
+    public let fields: AdditionalDataFields?
+    
+    public struct AdditionalDataFields: Codable {
+        public let Description: String?
+        public let Name: String?
+    }
+}
+
+public struct ItemUICategory: Codable {
+    public let value: Int
+    public let sheet: String?
+    public let row_id: Int?
+    public let fields: ItemUICategoryFields?
+    
+    public struct ItemUICategoryFields: Codable {
+        public let Icon: Icon
+        public let Name: String
+    }
 }
 
 
