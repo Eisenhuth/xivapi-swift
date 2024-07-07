@@ -11,15 +11,15 @@ public extension Item {
     var cooldown: Int { fields.Cooldowns }
     var description: String { fields.Description }
     var icon: Icon { fields.Icon }
-    var isAdvancedMeldingPermitted: Bool { fields.IsAdvancedMeldingPermitted }
-    var isCollectable: Bool { fields.IsCollectable }
-    var isCrestWorthy: Bool { fields.IsCrestWorthy }
-    var isDyeable: Bool { fields.IsDyeable }
-    var isGlamorous: Bool { fields.IsGlamorous }
-    var isIndisposable: Bool { fields.IsIndisposable }
-    var isPvP: Bool { fields.IsPvP }
-    var isUnique: Bool { fields.IsUnique }
-    var isUntradable: Bool { fields.IsUntradable }
+//    var isAdvancedMeldingPermitted: Bool { fields.IsAdvancedMeldingPermitted }
+//    var isCollectable: Bool { fields.IsCollectable }
+//    var isCrestWorthy: Bool { fields.IsCrestWorthy }
+//    var isDyeable: Bool { fields.IsDyeable }
+//    var isGlamorous: Bool { fields.IsGlamorous }
+//    var isIndisposable: Bool { fields.IsIndisposable }
+//    var isPvP: Bool { fields.IsPvP }
+//    var isUnique: Bool { fields.IsUnique }
+//    var isUntradable: Bool { fields.IsUntradable }
     var levelEquip: Int { fields.LevelEquip }
     var levelItem: LevelItem { fields.LevelItem }
     var itemLevel: Int { levelItem.value }
@@ -85,15 +85,15 @@ public struct ItemFields: Codable {
     public let Description: String
 //    public let EquipSlotCategory: EquipSlotCategory
     public let Icon: Icon
-    public let IsAdvancedMeldingPermitted: Bool
-    public let IsCollectable: Bool
-    public let IsCrestWorthy: Bool
-    public let IsDyeable: Bool
-    public let IsGlamorous: Bool
-    public let IsIndisposable: Bool
-    public let IsPvP: Bool
-    public let IsUnique: Bool
-    public let IsUntradable: Bool
+//    public let IsAdvancedMeldingPermitted: Bool
+//    public let IsCollectable: Bool
+//    public let IsCrestWorthy: Bool
+//    public let IsDyeable: Bool
+//    public let IsGlamorous: Bool
+//    public let IsIndisposable: Bool
+//    public let IsPvP: Bool
+//    public let IsUnique: Bool
+//    public let IsUntradable: Bool
 //    public let ItemSearchCategory: ItemSearchCategory
     public let ItemUICategory: ItemUICategory
     public let LevelEquip: Int
