@@ -44,7 +44,7 @@ public struct RecipeFields: Codable {
 //    public let RecipeNotebookList: RecipeNotebookList
     public let RequiredControl: Int
     public let RequiredCraftsmanship: Int
-//    public let SecretRecipeBook: SecretRecipeBook
+    public let SecretRecipeBook: SecretRecipeBook
     
 }
 
