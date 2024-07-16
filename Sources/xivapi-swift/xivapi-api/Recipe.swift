@@ -19,7 +19,7 @@ public extension Recipe {
         
         var _ingredients = [Ingredient]()
         
-        for i in 0..<10 {
+        for i in 0..<fields.Ingredient.count {
             if fields.AmountIngredient[i] != 0 && fields.Ingredient[i].value > 0 {
                 _ingredients.append(Ingredient(amount: fields.AmountIngredient[i], itemId: fields.Ingredient[i].value))
             }
@@ -77,7 +77,7 @@ public struct RecipeLevelTable: Codable {
         public let QualityDivider: Int
         public let QualityModifier: Int
         public let Stars: Int
-        public let SuggestedControl: Int
+        public let SuggestedControl: Int?
         public let SuggestedCraftsmanship: Int
     }
 }
