@@ -14,7 +14,7 @@ public extension Item {
     var isAdvancedMeldingPermitted: Bool { fields.IsAdvancedMeldingPermitted }
     var isCollectable: Bool { fields.IsCollectable }
     var isCrestWorthy: Bool { fields.IsCrestWorthy }
-    var isDyeable: Bool { fields.IsDyeable }
+//    var isDyeable: Bool { fields.IsDyeable }
     var isGlamorous: Bool { fields.IsGlamorous }
     var isIndisposable: Bool { fields.IsIndisposable }
     var isPvP: Bool { fields.IsPvP }
@@ -88,7 +88,7 @@ public struct ItemFields: Codable {
     public let IsAdvancedMeldingPermitted: Bool
     public let IsCollectable: Bool
     public let IsCrestWorthy: Bool
-    public let IsDyeable: Bool
+//    public let IsDyeable: Bool
     public let IsGlamorous: Bool
     public let IsIndisposable: Bool
     public let IsPvP: Bool
