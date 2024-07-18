@@ -24,6 +24,13 @@ public extension xivapiClient {
         return response
     }
     
+    func getMap(_ id: Int, queryItems: [URLQueryItem]? = nil) async -> XivMap? {
+        let url = Endpoint.sheet(.Map, id: id, queryItems: queryItems, private_key: private_key)!
+        let response: XivMap? = await loadData(url)
+        
+        return response
+    }
+    
     func getRecipe(_ id: Int, queryItems: [URLQueryItem]? = nil) async -> Recipe? {
         let url = Endpoint.sheet(.Recipe, id: id, queryItems: queryItems, private_key: private_key)!
         let response: Recipe? = await loadData(url)
