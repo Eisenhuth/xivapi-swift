@@ -9,7 +9,6 @@ public extension XivMap {
     var region: String { fields.PlaceNameRegion.fields.Name }
     var mapUrl: URL? {
         
-        let territoryName = fields.TerritoryType.fields.Name
         let territoryId = fields.Id
         let path = "ui/map/\(territoryId)/\(territoryId.replacingOccurrences(of: "/", with: ""))_m.tex"
         let url = Endpoint.asset(at: path)
