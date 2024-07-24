@@ -76,52 +76,11 @@ public extension xivapiClient {
     func getItemRecipeDict() async -> [Int : [Int]] {
         Bundle.module.decode("itemRecipeDict.json") as [Int : [Int]]
     }
-}
-
-public extension xivapiClient {
-       
-    /// search using a search string and multiple search indexes
-    /// - Parameters:
-    ///   - searchString: search string
-    ///   - indexes: search indexes
-    /// - Returns: search results
-    func searchAllPages(searchString: String, indexes: [XivSearchIndexes]) async -> [XivResult]?{
-        var queryItems = [
-            URLQueryItem(name: "string", value: searchString),
-            URLQueryItem(name: "indexes", value: indexes.map { $0.rawValue }.joined(separator: ","))
-        ]
-        
-        let url = LegacyEndpoint.search(queryItems: queryItems).url!
-        var response: LegacySearchResult? = await loadData(url)
-        var results = [XivResult]()
-        results.append(contentsOf: response?.Results ?? [])
-        
-        while response?.Pagination?.PageNext != nil {
-            let nextPageUrl = url.appending(queryItems: [URLQueryItem(name: "page", value: response?.Pagination?.PageNext?.description)])
-            
-            response = await loadData(nextPageUrl)
-            if response == nil { response = await loadData(nextPageUrl) } //attempt again, this shouldn't happen.
-            results.append(contentsOf: response?.Results ?? [])
-        }
-        
-        return results
-    }
     
-    func search(searchString: String, indexes: [XivSearchIndexes], queryItems: [URLQueryItem]?) async -> LegacySearchResult?{
-        var queries = [
-            URLQueryItem(name: "string", value: searchString),
-            URLQueryItem(name: "indexes", value: indexes.map { $0.rawValue }.joined(separator: ","))
-        ]
-        if let queryItems { queries.append(contentsOf: queryItems) }
-        
-        let url = LegacyEndpoint.search(queryItems: queries).url!
-        var response: LegacySearchResult? = await loadData(url)
-        
-        let test = LegacyEndpoint.search
+    func search(_ sheets: [Sheets], name: String, next: String? = nil) async -> SearchResults? {
+        let url = Endpoint.search(sheets, name: name, next: next)!
+        let response: SearchResults? = await loadData(url)
         
         return response
     }
-
 }
-
-
