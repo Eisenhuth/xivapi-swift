@@ -55,6 +55,13 @@ public extension xivapiClient {
         return response
     }
     
+    func getTrait(_ id: Int) async -> Trait? {
+        let url = Endpoint.sheet(.Trait, id: id)!
+        let response: Trait? = await loadData(url)
+        
+        return response
+    }
+    
     func getSheet<T: Codable>(_ sheet: Sheets, id: Int, queryItems: [URLQueryItem]? = nil) async -> T? {
         let url = Endpoint.sheet(sheet, id: id, queryItems: queryItems)!
         let response: T? = await loadData(url)
