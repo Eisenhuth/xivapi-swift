@@ -1,45 +1,62 @@
 import Foundation
 
 public class xivapiClient {
-    private let private_key: String?
-    
-    public init(private_key: String? = nil) {
-        self.private_key = private_key
-    }
+    public init() {}
 }
 
 public extension xivapiClient {
     
     func getItem(_ id: Int) async -> Item? {
-        let url = Endpoint.sheet(.Item, id: id, queryItems: nil, private_key: private_key)!
+        let url = Endpoint.sheet(.Item, id: id, queryItems: nil)!
         let response: Item? = await loadData(url)
         
         return response
     }
     
     func getItem(_ id: Int, queryItems: [URLQueryItem]? = nil) async -> Item? {
-        let url = Endpoint.sheet(.Item, id: id, queryItems: queryItems, private_key: private_key)!
+        let url = Endpoint.sheet(.Item, id: id, queryItems: queryItems)!
         let response: Item? = await loadData(url)
         
         return response
     }
     
     func getMap(_ id: Int, queryItems: [URLQueryItem]? = nil) async -> XivMap? {
-        let url = Endpoint.sheet(.Map, id: id, queryItems: queryItems, private_key: private_key)!
+        let url = Endpoint.sheet(.Map, id: id, queryItems: queryItems)!
         let response: XivMap? = await loadData(url)
         
         return response
     }
     
     func getRecipe(_ id: Int, queryItems: [URLQueryItem]? = nil) async -> Recipe? {
-        let url = Endpoint.sheet(.Recipe, id: id, queryItems: queryItems, private_key: private_key)!
+        let url = Endpoint.sheet(.Recipe, id: id, queryItems: queryItems)!
         let response: Recipe? = await loadData(url)
         
         return response
     }
     
+    func getStatus(_ id: Int) async -> XivStatus? {
+        let url = Endpoint.sheet(.Status, id: id)!
+        let response: XivStatus? = await loadData(url)
+        
+        return response
+    }
+    
+    func getAction(_ id: Int) async -> Action? {
+        let url = Endpoint.sheet(.Action, id: id)!
+        let response: Action? = await loadData(url)
+        
+        return response
+    }
+    
+    func getPvPAction(_ id: Int) async -> PvPAction? {
+        let url = Endpoint.sheet(.PvPAction, id: id)!
+        let response: PvPAction? = await loadData(url)
+        
+        return response
+    }
+    
     func getSheet<T: Codable>(_ sheet: Sheets, id: Int, queryItems: [URLQueryItem]? = nil) async -> T? {
-        let url = Endpoint.sheet(sheet, id: id, queryItems: queryItems, private_key: private_key)!
+        let url = Endpoint.sheet(sheet, id: id, queryItems: queryItems)!
         let response: T? = await loadData(url)
         
         return response
@@ -67,7 +84,7 @@ public extension xivapiClient {
             URLQueryItem(name: "indexes", value: indexes.map { $0.rawValue }.joined(separator: ","))
         ]
         
-        let url = LegacyEndpoint.search(queryItems: queryItems, private_key: private_key).url!
+        let url = LegacyEndpoint.search(queryItems: queryItems).url!
         var response: LegacySearchResult? = await loadData(url)
         var results = [XivResult]()
         results.append(contentsOf: response?.Results ?? [])
@@ -90,7 +107,7 @@ public extension xivapiClient {
         ]
         if let queryItems { queries.append(contentsOf: queryItems) }
         
-        let url = LegacyEndpoint.search(queryItems: queries, private_key: private_key).url!
+        let url = LegacyEndpoint.search(queryItems: queries).url!
         var response: LegacySearchResult? = await loadData(url)
         
         let test = LegacyEndpoint.search
