@@ -13,7 +13,7 @@ public extension XivStatus {
 public struct StatusFields: Codable {
     public let CanDispel: Bool
     public let CanStatusOff: Bool
-//    public let ClassJobCategory: ClassJobCategory
+    public let ClassJobCategory: ClassJobCategory
     public let Description: String
     public let Icon: Icon
 //    public let MaxStacks: Int

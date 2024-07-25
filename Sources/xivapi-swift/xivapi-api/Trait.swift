@@ -12,7 +12,7 @@ public extension Trait {
 
 public struct TraitFields: Codable {
 //    public let ClassJob: ClassJob
-//    public let ClassJobCategory
+    public let ClassJobCategory: ClassJobCategory
     public let Icon: Icon
     public let Level: Int
     public let Name: String

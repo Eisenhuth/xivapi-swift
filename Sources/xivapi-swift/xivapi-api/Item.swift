@@ -75,7 +75,7 @@ public struct ItemFields: Codable {
     public let BaseParamValue: [Int]
     public let Block: Int
     public let BlockRate: Int
-//    public let ClassJobCategory: ClassJobCategory
+    public let ClassJobCategory: ClassJobCategory
     public let Cooldowns: Int
     public let DamageMag: Int
     public let DamagePhys: Int

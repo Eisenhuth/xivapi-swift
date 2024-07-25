@@ -15,7 +15,7 @@ public struct ActionFields: Codable {
 //    public let ActionCombo: ActionCombo
 //    public let ActionProcStatus: ActionProcStatus
 //    public let ActionTimelineHit: ActionTimelineHit
-//    public let ClassJobCategory: ClassJobCategory
+    public let ClassJobCategory: ClassJobCategory
     public let Icon: Icon
     public let MaxCharges: Int
     public let Name: String
