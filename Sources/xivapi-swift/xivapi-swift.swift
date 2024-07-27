@@ -62,6 +62,21 @@ public extension xivapiClient {
         return response
     }
     
+    func getNpcYell(_ id: Int) async -> NpcYell? {
+        let url = Endpoint.sheet(.NpcYell, id: id)!
+        let response: NpcYell? = await loadData(url)
+        
+        return response
+    }
+    
+    func getNpcYell(_ id: Int, languages: [XivLanguage]) async -> NpcYell? {
+        let lang = languages.map { "Text@\($0.rawValue)" }
+        let languageQuery = URLQueryItem(name: "fields", value: lang.joined(separator: ","))
+        let url = Endpoint.sheet(.NpcYell, id: id, queryItems: [languageQuery])!
+        let response: NpcYell? = await loadData(url)
+        return response
+    }
+    
     func getSheet<T: Codable>(_ sheet: Sheets, id: Int, queryItems: [URLQueryItem]? = nil) async -> T? {
         let url = Endpoint.sheet(sheet, id: id, queryItems: queryItems)!
         let response: T? = await loadData(url)
