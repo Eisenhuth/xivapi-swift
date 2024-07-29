@@ -98,4 +98,11 @@ public extension xivapiClient {
         
         return response
     }
+    
+    func search(_ sheets: [Sheets], customQueries: [URLQueryItem], next: String? = nil) async -> SearchResults? {
+        let url = Endpoint.search(sheets, customQueries: customQueries, next: next)!
+        let response: SearchResults? = await loadData(url)
+        
+        return response
+    }
 }

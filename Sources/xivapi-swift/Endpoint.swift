@@ -38,6 +38,23 @@ public extension Endpoint {
         
         return components.url
     }
+    
+    static func search(_ sheets: [Sheets], customQueries: [URLQueryItem], next: String?) -> URL? {
+        
+        var components = URLComponents(string: "\(baseUrl)/search")!
+        
+        let sheets = sheets.map { $0.rawValue }.joined(separator: ",")
+        let sheetsQuery = URLQueryItem(name: "sheets", value: sheets)
+        let cursorQuery = URLQueryItem(name: "cursor", value: next)
+
+        components.queryItems = [sheetsQuery]
+        components.queryItems?.append(contentsOf: customQueries)
+        if next != nil {
+            components.queryItems?.append(cursorQuery)
+        }
+        
+        return components.url
+    }
 }
 
 extension Endpoint {
