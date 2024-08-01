@@ -6,6 +6,43 @@ public class xivapiClient {
 
 public extension xivapiClient {
     
+    func getSheet<T: Codable>(_ sheet: Sheets, id: Int, queryItems: [URLQueryItem]? = nil) async -> T? {
+        let url = Endpoint.sheet(sheet, id: id, queryItems: queryItems)!
+        let response: T? = await loadData(url)
+        
+        return response
+    }
+        
+    ///  get the recipe(s) for an item from the local dictionary
+    /// - Parameter itemId: itemId
+    /// - Returns: the RecipeID(s) for the provided Item
+    func getItemRecipes(itemId: Int) async -> [Int]? {
+        await getItemRecipeDict()[itemId]
+    }
+    
+    /// a  local dictionary of all the items and  recipes in the game
+    /// - Returns: a dictionary where the keys are ItemIDs and the values are RecipeIDs
+    func getItemRecipeDict() async -> [Int : [Int]] {
+        Bundle.module.decode("itemRecipeDict.json") as [Int : [Int]]
+    }
+    
+    func search(_ sheets: [Sheets], name: String, next: String? = nil) async -> SearchResults? {
+        let url = Endpoint.search(sheets, name: name, next: next)!
+        let response: SearchResults? = await loadData(url)
+        
+        return response
+    }
+    
+    func search(_ sheets: [Sheets], customQueries: [URLQueryItem], next: String? = nil) async -> SearchResults? {
+        let url = Endpoint.search(sheets, customQueries: customQueries, next: next)!
+        let response: SearchResults? = await loadData(url)
+        
+        return response
+    }
+}
+
+public extension xivapiClient {
+    
     func getItem(_ id: Int) async -> Item? {
         let url = Endpoint.sheet(.Item, id: id, queryItems: nil)!
         let response: Item? = await loadData(url)
@@ -13,22 +50,23 @@ public extension xivapiClient {
         return response
     }
     
-    func getItem(_ id: Int, queryItems: [URLQueryItem]? = nil) async -> Item? {
+    func getItemMinimal(_ id: Int) async -> ItemMinimal? {
+        let queryItems = [URLQueryItem(name: "fields", value: "Name,Description,Icon")]
         let url = Endpoint.sheet(.Item, id: id, queryItems: queryItems)!
-        let response: Item? = await loadData(url)
+        let response: ItemMinimal? = await loadData(url)
         
         return response
     }
     
-    func getMap(_ id: Int, queryItems: [URLQueryItem]? = nil) async -> XivMap? {
-        let url = Endpoint.sheet(.Map, id: id, queryItems: queryItems)!
+    func getMap(_ id: Int) async -> XivMap? {
+        let url = Endpoint.sheet(.Map, id: id)!
         let response: XivMap? = await loadData(url)
         
         return response
     }
     
-    func getRecipe(_ id: Int, queryItems: [URLQueryItem]? = nil) async -> Recipe? {
-        let url = Endpoint.sheet(.Recipe, id: id, queryItems: queryItems)!
+    func getRecipe(_ id: Int) async -> Recipe? {
+        let url = Endpoint.sheet(.Recipe, id: id)!
         let response: Recipe? = await loadData(url)
         
         return response
@@ -77,32 +115,4 @@ public extension xivapiClient {
         return response
     }
     
-    func getSheet<T: Codable>(_ sheet: Sheets, id: Int, queryItems: [URLQueryItem]? = nil) async -> T? {
-        let url = Endpoint.sheet(sheet, id: id, queryItems: queryItems)!
-        let response: T? = await loadData(url)
-        
-        return response
-    }
-    
-    func getItemRecipes(itemId: Int) async -> [Int]? {
-        await getItemRecipeDict()[itemId]
-    }
-    
-    func getItemRecipeDict() async -> [Int : [Int]] {
-        Bundle.module.decode("itemRecipeDict.json") as [Int : [Int]]
-    }
-    
-    func search(_ sheets: [Sheets], name: String, next: String? = nil) async -> SearchResults? {
-        let url = Endpoint.search(sheets, name: name, next: next)!
-        let response: SearchResults? = await loadData(url)
-        
-        return response
-    }
-    
-    func search(_ sheets: [Sheets], customQueries: [URLQueryItem], next: String? = nil) async -> SearchResults? {
-        let url = Endpoint.search(sheets, customQueries: customQueries, next: next)!
-        let response: SearchResults? = await loadData(url)
-        
-        return response
-    }
 }
