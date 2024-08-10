@@ -34,10 +34,19 @@ public struct AozActionTransientFields: Codable {
     
     public let Description: String
     public let Icon: Icon
-    public let Location: ContentFinderCondition
+    public let Location: AozLocation
     public let LocationKey: Int
     public let Number: Int
     public let Stats: String
     public let TargetsEnemy: Bool
     public let TargetsSelfOrAlly: Bool
+}
+
+public struct AozLocation: Codable {
+    public let value: Int
+    public let fields: AozLocationFields?
+    
+    public struct AozLocationFields: Codable {
+        public let Name: String
+    }
 }
