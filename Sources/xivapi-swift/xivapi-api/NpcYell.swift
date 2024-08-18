@@ -6,8 +6,8 @@ public struct NpcYell: Codable {
 }
 
 public extension NpcYell {
-    var Text: String { fields.Text }
-    var Text_en: String? { fields.Text_en }
+    var Text: String? { fields.Text }
+    var Text_en: String? { fields.Text_en ?? Text }
     var Text_ja: String? { fields.Text_ja }
     var Text_de: String? { fields.Text_de }
     var Text_fr: String? { fields.Text_fr }
@@ -16,7 +16,7 @@ public extension NpcYell {
 }
 
 public struct NpcYellFields: Codable {
-    public let Text: String
+    public let Text: String?
     
     public let Text_en: String?
     public let Text_ja: String?
