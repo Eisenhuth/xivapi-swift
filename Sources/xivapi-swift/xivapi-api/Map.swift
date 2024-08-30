@@ -8,12 +8,15 @@ public extension XivMap {
     var name: String { fields.PlaceName.fields.Name }
     var region: String { fields.PlaceNameRegion.fields.Name }
     var mapUrl: URL? {
-        
         let territoryId = fields.Id
         let path = "ui/map/\(territoryId)/\(territoryId.replacingOccurrences(of: "/", with: ""))_m.tex"
-        let url = Endpoint.asset(at: path)
-        
-        return url
+        return Endpoint.asset(at: path, format: .jpg)
+    }
+    
+    /// a map composed from the map and background textures
+    var compositedMapUrl: URL? {
+        let path = "map/\(fields.Id)"
+        return Endpoint.asset(at: path, format: .jpg)
     }
 }
 

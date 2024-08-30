@@ -7,6 +7,6 @@ public struct Icon: Codable, Hashable {
 }
 
 public extension Icon {
-    var iconUrl: URL? { path != nil ? Endpoint.asset(at: path!) : nil }
-    var iconUrlHD: URL? { path_hr1 != nil ? Endpoint.asset(at: path_hr1!) : nil }
+    var iconUrl: URL? { path != nil ? Endpoint.asset(at: path!, format: .jpg) : nil }
+    var iconUrlHD: URL? { path_hr1 != nil ? Endpoint.asset(at: path_hr1!, format: .jpg) : nil }
 }

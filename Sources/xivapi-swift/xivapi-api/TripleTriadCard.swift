@@ -18,7 +18,7 @@ public extension TripleTriadCard {
         let cardNumber = row_id.description
         let paddedString = String(repeating: "0", count: 3 - cardNumber.count).appending(cardNumber)
         let path = "ui/icon/087000/087\(paddedString)_hr1.tex"
-        let url = Endpoint.asset(at: path)
+        let url = Endpoint.asset(at: path, format: .png)
         
         return url
     }

@@ -18,9 +18,9 @@ public extension Endpoint {
         return Endpoint(sheet: sheet, id: id).url
     }
     
-    static func asset(at path: String) -> URL?{
+    static func asset(at path: String, format: Format = .jpg) -> URL?{
         var components = URLComponents(string: "\(baseUrl)/asset/\(path)")!
-        components.queryItems = [URLQueryItem(name: "format", value: "png")]
+        components.queryItems = [URLQueryItem(name: "format", value: format.rawValue)]
         
         return components.url
     }
