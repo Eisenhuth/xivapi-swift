@@ -57,6 +57,16 @@ public extension Item {
         return _stats.filter { $0.value != 0 }
     }
     
+    var itemFood: Int? {
+        let itemAction = fields.ItemAction
+        let consumables = [844, 845, 846]
+        if consumables.contains(itemAction.fields.type){
+            return itemAction.fields.Data[1] //ItemFood ID
+        }
+        
+        return nil
+    }
+    
     var stats: Stats {
         .init(block: fields.Block, blockRate: fields.BlockRate, damageMag: fields.DamageMag, damagePhys: fields.DamagePhys, defenseMag: fields.DefenseMag, defensePhys: fields.DefensePhys, delayms: fields.Delayms)
     }
@@ -88,6 +98,7 @@ public struct ItemFields: Codable {
     public let IsPvP: Bool
 //    public let IsUnique: Bool
     public let IsUntradable: Bool
+    public let ItemAction: ItemAction
     public let ItemSearchCategory: ItemSearchCategory
     public let ItemUICategory: ItemUICategory
     public let LevelEquip: Int
