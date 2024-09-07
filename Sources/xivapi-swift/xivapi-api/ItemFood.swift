@@ -21,7 +21,7 @@ public extension ItemFood {
         
         for i in 0...2 {
             let name = fields.BaseParam[i].fields.Name
-            let value = fields.Max[i]
+            let value = fields.Max[i] != 0 ? fields.Max[i] : fields.Value[i]
             
             _stats.append(Stat(name: name, value: value))
         }
@@ -35,7 +35,7 @@ public extension ItemFood {
         
         for i in 0...2 {
             let name = fields.BaseParam[i].fields.Name
-            let value = fields.MaxHQ[i]
+            let value = fields.MaxHQ[i] != 0 ? fields.MaxHQ[i] : fields.ValueHQ[i]
             
             _stats.append(Stat(name: name, value: value))
         }
