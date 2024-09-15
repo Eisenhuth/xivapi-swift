@@ -67,6 +67,32 @@ public extension Item {
         return nil
     }
     
+    var itemEffectNQ: String? {
+        let itemAction = fields.ItemAction.fields
+        
+        switch itemAction.type {
+        case 847:
+            return "Restores up to \(itemAction.Data[0] ?? 0)% of HP (\(itemAction.Data[1] ?? 0) points max)."
+        case 848:
+            return "Restores up to \(itemAction.Data[0] ?? 0)% of MP (\(itemAction.Data[1] ?? 0) points max)."
+        default:
+            return nil
+        }
+    }
+        
+    var itemEffectHQ: String? {
+        let itemAction = fields.ItemAction.fields
+        
+        switch itemAction.type {
+        case 847:
+            return "Restores up to \(itemAction.DataHQ[0] ?? 0)% of HP (\(itemAction.DataHQ[1] ?? 0) points max)."
+        case 848:
+            return "Restores up to \(itemAction.DataHQ[0] ?? 0)% of MP (\(itemAction.DataHQ[1] ?? 0) points max)."
+        default:
+            return nil
+        }
+    }
+    
     var stats: Stats {
         .init(block: fields.Block, blockRate: fields.BlockRate, damageMag: fields.DamageMag, damagePhys: fields.DamagePhys, defenseMag: fields.DefenseMag, defensePhys: fields.DefensePhys, delayms: fields.Delayms)
     }
