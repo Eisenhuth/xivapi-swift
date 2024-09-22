@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public func loadData<T: Decodable>(_ url: URL) async -> T? {
     do{
