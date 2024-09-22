@@ -72,9 +72,9 @@ public extension Item {
         
         switch itemAction.type {
         case 847:
-            return "Restores up to \(itemAction.Data[0] ?? 0)% of HP (\(itemAction.Data[1] ?? 0) points max)."
+            return "Restores up to \(itemAction.Data[0])% of HP (\(itemAction.Data[1]) points max)."
         case 848:
-            return "Restores up to \(itemAction.Data[0] ?? 0)% of MP (\(itemAction.Data[1] ?? 0) points max)."
+            return "Restores up to \(itemAction.Data[0])% of MP (\(itemAction.Data[1]) points max)."
         default:
             return nil
         }
@@ -85,9 +85,9 @@ public extension Item {
         
         switch itemAction.type {
         case 847:
-            return "Restores up to \(itemAction.DataHQ[0] ?? 0)% of HP (\(itemAction.DataHQ[1] ?? 0) points max)."
+            return "Restores up to \(itemAction.DataHQ[0])% of HP (\(itemAction.DataHQ[1]) points max)."
         case 848:
-            return "Restores up to \(itemAction.DataHQ[0] ?? 0)% of MP (\(itemAction.DataHQ[1] ?? 0) points max)."
+            return "Restores up to \(itemAction.DataHQ[0])% of MP (\(itemAction.DataHQ[1]) points max)."
         default:
             return nil
         }
