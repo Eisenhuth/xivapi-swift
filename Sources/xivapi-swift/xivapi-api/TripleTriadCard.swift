@@ -13,12 +13,23 @@ public struct TripleTriadCardFields: Codable {
 public extension TripleTriadCard {
     
     var backgroundUrl: URL? { Endpoint.asset(at: "ui/uld/CardTripleTriad_hr1.tex") }
+    @available(*, deprecated, message: "Use imageUrl(format:) instead.", renamed: "imageUrl()" )
     var imageUrl: URL? {
         
         let cardNumber = row_id.description
         let paddedString = String(repeating: "0", count: 3 - cardNumber.count).appending(cardNumber)
         let path = "ui/icon/087000/087\(paddedString)_hr1.tex"
         let url = Endpoint.asset(at: path, format: .png)
+        
+        return url
+    }
+    
+    func imageUrl(format: Format = .png) -> URL? {
+        
+        let cardNumber = row_id.description
+        let paddedString = String(repeating: "0", count: 3 - cardNumber.count).appending(cardNumber)
+        let path = "ui/icon/087000/087\(paddedString)_hr1.tex"
+        let url = Endpoint.asset(at: path, format: format)
         
         return url
     }

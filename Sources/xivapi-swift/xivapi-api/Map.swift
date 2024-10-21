@@ -7,10 +7,17 @@ public struct XivMap: Codable {
 public extension XivMap {
     var name: String { fields.PlaceName.fields.Name }
     var region: String { fields.PlaceNameRegion.fields.Name }
+    @available(*, deprecated, message: "Use mapUrl(format:) instead.", renamed: "mapUrl()" )
     var mapUrl: URL? {
         let territoryId = fields.Id
         let path = "ui/map/\(territoryId)/\(territoryId.replacingOccurrences(of: "/", with: ""))_m.tex"
         return Endpoint.asset(at: path, format: .jpg)
+    }
+    
+    func mapUrl(format: Format = .jpg) -> URL? {
+        let territoryId = fields.Id
+        let path = "ui/map/\(territoryId)/\(territoryId.replacingOccurrences(of: "/", with: ""))_m.tex"
+        return Endpoint.asset(at: path, format: format)
     }
     
     /// a map composed from the map and background textures
