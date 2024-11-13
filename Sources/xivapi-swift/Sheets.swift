@@ -26,6 +26,7 @@ public enum Sheets: String {
     case ActionInit
     case ActionParam
     case ActionProcStatus
+    case ActionSetting
     case ActionTimeline
     case ActionTimelineMove
     case ActionTimelineReplace
@@ -95,6 +96,8 @@ public enum Sheets: String {
     case BacklightColor
     case Ballista
     case Balloon
+    case BankaCraftWorks
+    case BankaCraftWorksSupply
     case BannerBg
     case BannerCondition
     case BannerDecoration
@@ -134,6 +137,7 @@ public enum Sheets: String {
     case CSBonusTextData
     case Cabinet
     case CabinetCategory
+    case CabinetSubCategory
     case Calendar
     case Carry
     case Channeling
@@ -151,7 +155,7 @@ public enum Sheets: String {
     case ChocoboRace
     case ChocoboRaceAbility
     case ChocoboRaceAbilityType
-    case ChocoboRaceCulateParam
+    case ChocoboRaceCalculateParam
     case ChocoboRaceChallenge
     case ChocoboRaceItem
     case ChocoboRaceRank
@@ -165,8 +169,10 @@ public enum Sheets: String {
     case CircleActivity
     case ClassJob
     case ClassJobActionSort
+    case ClassJobActionUI
     case ClassJobCategory
     case ClassJobResident
+    case CollectablesRefine
     case CollectablesShop
     case CollectablesShopItem
     case CollectablesShopItemGroup
@@ -192,12 +198,13 @@ public enum Sheets: String {
     case CompanyLeve
     case CompanyLeveRule
     case CompleteJournal
-    case CompleteJournategory
+    case CompleteJournalCategory
     case Completion
     case Condition
     case ConfigKey
     case ContentAttributeRect
     case ContentCloseCycle
+    case ContentDirectorBattleTalk
     case ContentDirectorManagedSG
     case ContentEffectiveTime
     case ContentEntry
@@ -205,7 +212,6 @@ public enum Sheets: String {
     case ContentExAction
     case ContentFinderCondition
     case ContentFinderConditionTransient
-    case ContentFinderParamTable
     case ContentGauge
     case ContentGaugeColor
     case ContentMemberType
@@ -229,6 +235,7 @@ public enum Sheets: String {
     case ContentsTutorial
     case ContentsTutorialPage
     case CraftAction
+    case CraftActionIndirection
     case CraftLeve
     case CraftLeveTalk
     case CraftLevelDifference
@@ -308,7 +315,10 @@ public enum Sheets: String {
     case EObjName
     case EmjAddon
     case EmjCharaViewCamera
+    case EmjCostume
+    case EmjCostumeData
     case EmjDani
+    case EmjVoiceNpc
     case Emote
     case EmoteCategory
     case EmoteMode
@@ -329,6 +339,7 @@ public enum Sheets: String {
     case EurekaStoryProgress
     case EventAction
     case EventCustomIconType
+    case EventGimmickPathMove
     case EventIconPriority
     case EventIconPriorityPair
     case EventIconType
@@ -337,6 +348,7 @@ public enum Sheets: String {
     case EventItemCategory
     case EventItemHelp
     case EventItemTimeline
+    case EventMountGimmickPathMove
     case EventPathMove
     case EventSituationIconTooltip
     case EventSystemDefine
@@ -415,6 +427,7 @@ public enum Sheets: String {
     case GFateType
     case GameRewardObtainType
     case GardeningSeed
+    case GathererCrafterLvAdjustTable
     case GathererCrafterTool
     case GathererReductionReward
     case GatheringCondition
@@ -461,6 +474,8 @@ public enum Sheets: String {
     case GimmickRect
     case GimmickTalk
     case GimmickYesNo
+    case Glasses
+    case GlassesStyle
     case GoldSaucerArcadeMachine
     case GoldSaucerContent
     case GoldSaucerTalk
@@ -484,7 +499,6 @@ public enum Sheets: String {
     case GuildleveAssignment
     case GuildleveAssignmentCategory
     case GuildleveAssignmentTalk
-    case GuildleveEvaluation
     case HWDAnnounce
     case HWDCrafterSupply
     case HWDCrafterSupplyReward
@@ -512,6 +526,7 @@ public enum Sheets: String {
     case HousingEmploymentNpcRace
     case HousingExterior
     case HousingFurniture
+    case HousingIndoorTerritory
     case HousingInterior
     case HousingLandSet
     case HousingMapMarkerInfo
@@ -520,6 +535,7 @@ public enum Sheets: String {
     case HousingPileLimit
     case HousingPlacement
     case HousingPreset
+    case HousingRenovation
     case HousingTrainingDoll
     case HousingUnitedExterior
     case HousingUnplacement
@@ -547,7 +563,6 @@ public enum Sheets: String {
     case IndividualWeather
     case InstanceContent
     case InstanceContentBuff
-    case InstanceContentCSBonus
     case InstanceContentGuide
     case InstanceContentQICData
     case InstanceContentRewardItem
@@ -574,7 +589,7 @@ public enum Sheets: String {
     case Jingle
     case JobHudManual
     case JobHudManualPriority
-    case Journategory
+    case JournalCategory
     case JournalGenre
     case JournalSection
     case KineDriverOffGroup
@@ -591,6 +606,7 @@ public enum Sheets: String {
     case LeveVfx
     case Level
     case LinkRace
+    case LivelyActorGroup
     case LoadingImage
     case LoadingTips
     case LoadingTipsSub
@@ -641,6 +657,7 @@ public enum Sheets: String {
     case MJIVillageAppearanceSG
     case MJIVillageAppearanceUI
     case MJIVillageDevelopment
+    case MKDData
     case MYCTemporaryItem
     case MYCTemporaryItemUICategory
     case MYCWarResultNotebook
@@ -661,13 +678,16 @@ public enum Sheets: String {
     case MapTransientPvPMap
     case MapType
     case Marker
+    case MassivePcContent
+    case MassivePcContentBattleTalk
+    case MassivePcContentTextData
+    case MassivePcContentTodo
     case MateAuthorityCategory
     case Materia
     case MateriaGrade
     case MateriaJoinRate
     case MateriaJoinRateGatherCraft
     case MateriaParam
-    case MateriaTomestoneRate
     case McGuffin
     case McGuffinUIData
     case MiniGameRA
@@ -684,6 +704,7 @@ public enum Sheets: String {
     case MinionSkillType
     case MinionStage
     case MirageStoreSetItem
+    case MirageStoreSetItemLookup
     case MobHuntOrder
     case MobHuntOrderType
     case MobHuntReward
@@ -756,12 +777,17 @@ public enum Sheets: String {
     case PetMirage
     case PhysicsGroup
     case PhysicsOffGroup
+    case PhysicsParameter
     case PhysicsWind
     case Picture
     case PlaceName
+    case PlaceNameReplace
     case PlantPotFlowerSeed
     case PlayerSearchLocation
     case PlayerSearchSubLocation
+    case PointMenu
+    case PointMenuChoice
+    case PointMenuString
     case PreHandler
     case PreHandlerMovement
     case PresetCamera
@@ -785,6 +811,9 @@ public enum Sheets: String {
     case QTE
     case Quest
     case QuestAcceptAdditionCondition
+    case QuestAdditionalToolIcon
+    case QuestAroundPlayerHide
+    case QuestAroundPlayerHideExt
     case QuestBattle
     case QuestBattleResident
     case QuestBattleSystemDefine
@@ -812,9 +841,13 @@ public enum Sheets: String {
     case QuestRedoIncompChapter
     case QuestRepeatFlag
     case QuestRewardOther
+    case QuestSceneAbortCondition
+    case QuestSceneAbortConditionFlag
+    case QuestSceneAbortConditionType
     case QuestSelectTitle
     case QuestSetDefine
     case QuestStatusParam
+    case QuestSubCommand
     case QuestSystemDefine
     case QuickChat
     case QuickChatTransient
@@ -834,6 +867,7 @@ public enum Sheets: String {
     case RecipeLevelTable
     case RecipeLookup
     case RecipeNotebookList
+    case RecipeSubCategory
     case RecommendContents
     case Relic
     case Relic3
@@ -845,6 +879,7 @@ public enum Sheets: String {
     case RelicMateria
     case RelicNote
     case RelicNoteCategory
+    case ReplaceAction
     case Resident
     case ResidentMotionType
     case ResistanceWeaponAdjust
@@ -932,6 +967,7 @@ public enum Sheets: String {
     case TerritoryTypeTransient
     case TextCommand
     case TextCommandParam
+    case TiltParam
     case Title
     case TofuEditParam
     case TofuObject
@@ -944,6 +980,7 @@ public enum Sheets: String {
     case TomestonesItem
     case TopicSelect
     case Town
+    case TradeScreenImage
     case Trait
     case TraitRecast
     case TraitTransient
@@ -968,6 +1005,7 @@ public enum Sheets: String {
     case TripleTriadTournament
     case Tutorial
     case TutorialDPS
+    case TutorialGimmick
     case TutorialHealer
     case TutorialTank
     case UDS_Event
@@ -985,6 +1023,24 @@ public enum Sheets: String {
     case VVDVariantAction
     case Vase
     case VaseFlower
+    case WKSAchievement
+    case WKSCosmoToolClass
+    case WKSCosmoToolDataAmount
+    case WKSCosmoToolPassiveBuff
+    case WKSDevGrade
+    case WKSEmergencyInfo
+    case WKSEmergencyLivelyActorGroup
+    case WKSFunction
+    case WKSItemInfo
+    case WKSMechaEventContribution
+    case WKSMechaEventData
+    case WKSMechaEventObject
+    case WKSMechaEventObjectGroup
+    case WKSMissionPromotionCondition
+    case WKSMissionRecipe
+    case WKSMissionToDoSuccessType
+    case WKSMissionUnit
+    case WKSSharedGroup
     case Warp
     case WarpCondition
     case WarpLogic
