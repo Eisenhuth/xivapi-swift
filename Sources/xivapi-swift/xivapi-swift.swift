@@ -1,6 +1,6 @@
 import Foundation
 
-public class xivapiClient {
+public class xivapiClient: ObservableObject {
     
     public var schema: String?
     public var version: String?
