@@ -17,7 +17,9 @@ public extension XivMap {
     /// a map composed from the map and background textures
     var compositedMapUrl: URL? {
         let path = "map/\(fields.Id)"
-        return Endpoint.asset(at: path, format: .jpg)
+        var components = URLComponents(string: "\(Endpoint.baseUrl)/asset/\(path)")!
+        components.queryItems = [URLQueryItem(name: "format", value: "jpg")]
+        return components.url
     }
 }
 
