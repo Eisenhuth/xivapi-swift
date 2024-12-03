@@ -11,8 +11,11 @@ extension Endpoint {
     static let baseUrl: String = "https://beta.xivapi.com/api/1"
     
     static func asset(at path: String, format: Format = .jpg) -> URL?{
-        var components = URLComponents(string: "\(baseUrl)/asset/\(path)")!
-        components.queryItems = [URLQueryItem(name: "format", value: format.rawValue)]
+        var components = URLComponents(string: "\(baseUrl)/asset")!
+        components.queryItems = [
+            URLQueryItem(name: "path", value: path),
+            URLQueryItem(name: "format", value: format.rawValue)
+        ]
         
         return components.url
     }
