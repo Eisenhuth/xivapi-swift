@@ -16,8 +16,8 @@ struct Item_Tests {
         #expect(item.canBeHq == true)
         #expect(item.cooldown == 300)
         #expect(item.description == "This diluted brew temporarily increases strength for twice the duration of similar potions.\n\nDuration: 30s")
-        #expect(item.icon.iconUrl(format: .jpg)?.description ==  "https://beta.xivapi.com/api/1/asset/ui/icon/020000/020710.tex?format=jpg")
-        #expect(item.icon.iconUrlHD(format: .jpg)?.description == "https://beta.xivapi.com/api/1/asset/ui/icon/020000/020710_hr1.tex?format=jpg")
+        #expect(item.icon.iconUrl(format: .jpg)?.description ==  "https://beta.xivapi.com/api/1/asset?path=ui/icon/020000/020710.tex&format=jpg")
+        #expect(item.icon.iconUrlHD(format: .jpg)?.description == "https://beta.xivapi.com/api/1/asset?path=ui/icon/020000/020710_hr1.tex&format=jpg")
         
         #expect(item.levelEquip == 1)
         #expect(item.itemLevel == 710)
