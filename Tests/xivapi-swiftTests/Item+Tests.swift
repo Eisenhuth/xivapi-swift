@@ -86,6 +86,12 @@ struct Item_Tests {
         #expect(food.bonusesHQ.first?.value == 6)
     }
     
+    @Test("Item: Furniture") func ItemFurniture() async throws {
+        let item = try #require(await xivapi.getItem(44889))
+        
+        #expect(item.name == "Origenics Monitor Desk")
+    }
+    
     @Test func ItemMinimal() async throws {
         let item = try #require(await xivapi.getItemMinimal(44162))
         
