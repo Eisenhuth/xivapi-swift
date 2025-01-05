@@ -88,7 +88,7 @@ public struct Ingredient: Codable, Hashable, Identifiable {
 }
 
 public extension Ingredient {
-    var id: UUID { UUID() }
+    var id: Int { itemId }
     
     static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
         return lhs.itemId == rhs.itemId
