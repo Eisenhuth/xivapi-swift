@@ -5,6 +5,7 @@ import xivapi_swift
 @Suite("Client")
 struct Client_Tests {
     let xivapi = xivapiClient()
+    let xivapiPinned = xivapiClient(automaticallyPin: true)
     
     //MARK: commonly used
     @Test("Search: Name (Recipe/Item)") func TestSearch() async throws {
@@ -36,6 +37,11 @@ struct Client_Tests {
     
     @Test("Decode Item") func DecodeItem() async throws {
         let item = try #require(await xivapi.getItem(44162))
+        #expect(item.name == "Grade 2 Gemdraught of Strength")
+    }
+    
+    @Test("Decode Item /w Version & Schema") func DecodeItem2() async throws {
+        let item = try #require(await xivapiPinned.getItem(44162))
         #expect(item.name == "Grade 2 Gemdraught of Strength")
     }
     
@@ -77,5 +83,23 @@ struct Client_Tests {
     @Test("Decode Town") func DecodeTown() async throws { #expect(await xivapi.getSheet(.Town, id: 1) as Town? != nil) }
     @Test("Decode TripleTriadCard") func DecodeTripleTriadCard() async throws { #expect(await xivapi.getSheet(.TripleTriadCard, id: 346) as TripleTriadCard? != nil) }
     
+    //MARK: others
+    @Test("List Versions") func ListVersions() async throws {
+        let versions = try #require(await xivapi.listVersions())
+        #expect(versions.count > 1)
+        #expect(versions.contains("latest"))
+    }
     
+    @Test("List Sheets") func ListSheets() async throws {
+        let sheets = try #require(await xivapi.listSheets())
+        #expect(sheets.count > 100)
+    }
+    
+    @Test("Test Pin") func TestPin() async throws {
+        #expect(xivapiPinned.version == verifiedVersion)
+        #expect(xivapiPinned.schema == verifiedSchema)
+        #expect(xivapi.version == nil)
+        #expect(xivapi.schema == nil)
+        #expect(xivapiPinned.assetUrl(at: "") != xivapi.assetUrl(at: "test"))
+    }
 }

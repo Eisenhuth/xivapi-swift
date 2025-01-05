@@ -18,6 +18,8 @@ struct Recipe_Tests {
         #expect(recipe.ingredients.first != recipe.ingredients.last)
         #expect(recipe.recipeLevelTable.fields.Stars == 2)
         #expect(recipe.ingredients.contains { $0.itemId == 44051 })
+        let firstIngredient = recipe.ingredients.first
+        #expect(firstIngredient?.id == firstIngredient?.itemId)
     }
 
 }
