@@ -5,10 +5,11 @@ public class xivapiClient: ObservableObject {
     public var schema: String?
     public var version: String?
     public var baseUrl: URL = URL(string: "https://beta.xivapi.com/api/1")!
-    
-    public init(schema: String? = nil, version: String? = nil, baseUrl: URL? = nil) {
-        self.schema = schema
-        self.version = version
+    public var automaticallyPin: Bool = false
+        
+    public init(schema: String? = nil, version: String? = nil, baseUrl: URL? = nil, automaticallyPin: Bool = false) {
+        self.schema = automaticallyPin ? verifiedSchema : schema
+        self.version = automaticallyPin ? verifiedVersion : version
         self.baseUrl = baseUrl ?? self.baseUrl
     }
 }
@@ -47,6 +48,16 @@ public extension xivapiClient {
         let response: SearchResults? = await loadData(url)
         
         return response
+    }
+    
+    func listVersions() async -> [String]? {
+        let url = URLComponents(string: "\(baseUrl)/version")!.url!
+        return await loadData(url) as [String]?
+    }
+    
+    func listSheets() async -> [String]? {
+        let url = URLComponents(string: "\(baseUrl)/sheet")!.url!
+        return await loadData(url) as [String]?
     }
 }
 
