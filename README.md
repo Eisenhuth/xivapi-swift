@@ -47,8 +47,12 @@ you can provide your own `Codable` structs for use with `.getSheet`
 struct MyCustomItemStruct: Codable {
     let row_id: Int
 }
-
+```
+```swift
 let myItem = await client.getSheet(.Item, id: 39727) as MyCustomItemStruct?
+```
+```swift
+let myItem = await client.getSheet(name: "Item", id: 39727) as MyCustomItemStruct?
 ```
 or use the built-in structs
 ```swift
