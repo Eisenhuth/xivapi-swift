@@ -45,6 +45,11 @@ struct Client_Tests {
         #expect(item.name == "Grade 2 Gemdraught of Strength")
     }
     
+    @Test("Decode Item /w named Sheet") func DecodeItem3() async throws {
+        let item = try #require(await xivapi.getSheet(name: "Item", id: 44162) as Item?)
+        #expect(item.name == "Grade 2 Gemdraught of Strength")
+    }
+    
     @Test("Decode ItemMinimal") func DecodeItemMinimal() async throws {
         let itemMinimal = try #require(await xivapi.getItemMinimal(44162))
         #expect(itemMinimal.name == "Grade 2 Gemdraught of Strength")

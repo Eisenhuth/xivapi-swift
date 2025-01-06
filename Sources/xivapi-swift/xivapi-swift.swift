@@ -17,7 +17,11 @@ public class xivapiClient: ObservableObject {
 public extension xivapiClient {
     
     func getSheet<T: Codable>(_ sheet: Sheets, id: Int, queryItems: [URLQueryItem]? = nil) async -> T? {
-        let url = sheetUrl(sheet: sheet, id: id, queryItems: queryItems, schema: schema, version: version)
+        await getSheet(name: sheet.rawValue, id: id, queryItems: queryItems)
+    }
+    
+    func getSheet<T: Codable>(name: String, id: Int, queryItems: [URLQueryItem]? = nil) async -> T? {
+        let url = sheetUrl(name: name, id: id, queryItems: queryItems, schema: schema, version: version)
         let response: T? = await loadData(url)
         
         return response
@@ -94,7 +98,11 @@ public extension xivapiClient {
 
 public extension xivapiClient {
     func sheetUrl(sheet: Sheets, id: Int, queryItems: [URLQueryItem]? = nil, schema: String? = nil, version: String? = nil) -> URL {
-        var components = URLComponents(string: "\(baseUrl)/sheet/\(sheet)/\(id)")!
+        sheetUrl(name: sheet.rawValue, id: id, queryItems: queryItems, schema: schema, version: version)
+    }
+    
+    func sheetUrl(name: String, id: Int, queryItems: [URLQueryItem]? = nil, schema: String? = nil, version: String? = nil) -> URL {
+        var components = URLComponents(string: "\(baseUrl)/sheet/\(name)/\(id)")!
         
         if queryItems != nil { components.queryItems = queryItems }
         
