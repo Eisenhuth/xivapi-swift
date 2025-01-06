@@ -27,6 +27,8 @@ let client = xivapiClient(schema: schema, version: "7.15")
 //option 3 - using the schema/version this version of the package was verified against
 let client = xivapiClient(automaticallyPin: true)
 ```
+> [!TIP]
+> It is _highly recommended_ to specify a version and schema - alternatively use the automatic pin mentioned above to use the schema/version the package was verified against.
 
 ## commonly used endpoints
 ```swift
@@ -39,6 +41,23 @@ let action = await client.getAction(7393) //The Blackest Night
 ```
 there are extensions for a lot of the data, e.g. `Map` has `.mapUrl` to get the texture, or `TripleTriadCard`'s `.imageUrl` to get the card's artwork. I recommend not looking too closely at how specifically these URLs are constructed, that way lies madness.
 
+## Sheets
+you can provide your own `Codable` structs for use with `.getSheet`
+```swift
+struct MyCustomItemStruct: Codable {
+    let row_id: Int
+}
+
+let myItem = await client.getSheet(.Item, id: 39727) as MyCustomItemStruct?
+```
+or use the built-in structs
+```swift
+let ttCard = await client.getSheet(.TripleTriadCard, id: 346) as TripleTriadCard?
+print(ttCard?.fields.Name ?? "name") //Zenos Galvus
+print(ttCard?.fields.Description ?? "description") //“Did you find...fulfillment?”
+
+```
+
 ## Item:Recipe lookup
 ```swift
 if let recipeId = await client.getItemRecipes(itemId: 39727)?.first {
@@ -50,27 +69,4 @@ if let recipeId = await client.getItemRecipes(itemId: 39727)?.first {
 }
 
 let entireLookup = await client.getItemRecipeDict() //[ItemId : [RecipeId]]
-```
-
-
-## NpcYell, in different languages? mostly a proof of concept
-```swift
-let quote = await client.getNpcYell(6492, languages: [.en, .ja, .de, .fr]) //also technically supports Chinese and Korean
-print(quote?.Text_en ?? "[Text_en]") //O hallowed moon, shine you the iron path!
-print(quote?.Text_ja ?? "[Text_ja]") //月よ！鉄の覇道を照らせ！
-```
-
-## Sheets
-for anything more custom there is `.getSheet`, where you can provide your own struct and custom queries, for any sheet.
-```swift
-struct MyCustomItemStruct: Codable {
-    let row_id: Int
-}
-
-let myItem:MyCustomItemStruct? = await client.getSheet(.Item, id: 39727)
-
-let ttCard:TripleTriadCard? = await client.getSheet(.TripleTriadCard, id: 346)
-print(ttCard?.fields.Name ?? "name") //Zenos Galvus
-print(ttCard?.fields.Description ?? "description") //“Did you find...fulfillment?”
-
 ```
