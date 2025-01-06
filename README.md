@@ -1,10 +1,10 @@
 # xivapi-swift
+a simple swift client to easily work with xivapi
 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEisenhuth%2Fxivapi-swift%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/Eisenhuth/xivapi-swift)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEisenhuth%2Fxivapi-swift%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/Eisenhuth/xivapi-swift)
 [![](https://img.shields.io/badge/DocC-documentation-orange)](https://swiftpackageindex.com/eisenhuth/xivapi-swift/master/documentation/xivapi_swift/xivapiclient)
 
-a simple swift client to easily work with xivapi
 
 # Installation
 ## Swift Package Manager
@@ -15,9 +15,17 @@ a simple swift client to easily work with xivapi
 
 # Usage
 ```swift
-import xivapi_swift
-
-let client = xivapiClient()
+//option 1 - latest schema, latest version - unverified
+let client = xivapiClient() 
+```
+```swift
+//option 2 - providing your own schema/version
+let schema = "exdschema@9942dd96c70dfbba55bbc4280da144e5cb410737-2024.11.06.0000.0000"
+let client = xivapiClient(schema: schema, version: "7.15")
+```
+```swift
+//option 3 - using the schema/version this version of the package was verified against
+let client = xivapiClient(automaticallyPin: true)
 ```
 
 ## commonly used endpoints
