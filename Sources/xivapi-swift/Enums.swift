@@ -5,5 +5,5 @@ public enum XivLanguage: String {
 }
 
 public enum Format: String {
-    case jpg,png
+    case jpg,png,webp
 }
