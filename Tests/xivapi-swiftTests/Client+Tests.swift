@@ -55,6 +55,34 @@ struct Client_Tests {
         #expect(itemMinimal.name == "Grade 2 Gemdraught of Strength")
     }
     
+    @Test("Decode Multiple Items") func DecodeMultipleItems() async throws {
+        struct MultipleItems: Codable {
+            let schema: String
+            let rows: [Row]
+            
+            struct Row: Codable {
+                let row_id: Int
+                let fields: RowFields
+            }
+            
+            struct RowFields: Codable {
+                let Icon: Icon
+                let Name: String
+            }
+        }
+        
+        let itemIds = [39727, 44162, 44178, 44175]
+        let multipleItems = try #require(await xivapi.getSheetRows(.Item, rows: itemIds) as MultipleItems?)
+        let rows = multipleItems.rows
+        #expect(rows.count == itemIds.count)
+        
+        let names = rows.map { $0.fields.Name }
+        #expect(names.contains("Grade 2 Gemdraught of Strength"))
+        #expect(names.contains("Grade 8 Tincture of Strength"))
+        #expect(names.contains("Moqueca"))
+        #expect(names.contains("Roast Chicken"))
+    }
+    
     @Test("Decode Recipe") func DecodeRecipe() async throws {
         let recipe = try #require(await xivapi.getRecipe(35585))
         #expect(recipe.itemResult.row_id == 39727)

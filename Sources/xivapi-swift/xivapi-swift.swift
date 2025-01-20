@@ -26,6 +26,17 @@ public extension xivapiClient {
         
         return response
     }
+    
+    func getSheetRows<T: Codable>(_ sheet: Sheets, rows: [Int], queryItems: [URLQueryItem]? = nil) async -> T? {
+        await getSheetRows(sheet.rawValue, rows: rows, queryItems: queryItems)
+    }
+    
+    func getSheetRows<T: Codable>(_ name: String, rows: [Int], queryItems: [URLQueryItem]? = nil) async -> T? {
+        let url = sheetUrl(name: name, ids: rows, queryItems: queryItems)
+        let response: T? = await loadData(url)
+        
+        return response
+    }
         
     ///  get the recipe(s) for an item from the local dictionary
     /// - Parameter itemId: itemId
@@ -112,6 +123,22 @@ public extension xivapiClient {
             if let version { components.queryItems?.append(URLQueryItem(name: "version", value: version)) }
         }
         
+        return components.url!
+    }
+    
+    func sheetUrl(sheet: Sheets, ids: [Int], queryItems: [URLQueryItem]? = nil, schema: String? = nil, version: String? = nil) -> URL {
+        sheetUrl(name: sheet.rawValue, ids: ids, queryItems: queryItems, schema: schema, version: version)
+    }
+    
+    func sheetUrl(name: String, ids: [Int], queryItems: [URLQueryItem]? = nil, schema: String? = nil, version: String? = nil) -> URL {
+        var components = URLComponents(string: "\(baseUrl)/sheet/\(name)")!
+        components.queryItems = []
+        components.queryItems?.append(URLQueryItem(name: "rows", value: ids.map { $0.description }.joined(separator: ",")))
+        
+        if let queryItems { components.queryItems?.append(contentsOf: queryItems) }
+        if let schema { components.queryItems?.append(URLQueryItem(name: "schema", value: schema)) }
+        if let version { components.queryItems?.append(URLQueryItem(name: "version", value: version)) }
+
         return components.url!
     }
     
