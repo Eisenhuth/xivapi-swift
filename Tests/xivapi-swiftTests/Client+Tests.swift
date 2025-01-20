@@ -56,27 +56,11 @@ struct Client_Tests {
     }
     
     @Test("Decode Multiple Items") func DecodeMultipleItems() async throws {
-        struct MultipleItems: Codable {
-            let schema: String
-            let rows: [Row]
-            
-            struct Row: Codable {
-                let row_id: Int
-                let fields: RowFields
-            }
-            
-            struct RowFields: Codable {
-                let Icon: Icon
-                let Name: String
-            }
-        }
-        
         let itemIds = [39727, 44162, 44178, 44175]
-        let multipleItems = try #require(await xivapi.getSheetRows(.Item, rows: itemIds) as MultipleItems?)
-        let rows = multipleItems.rows
-        #expect(rows.count == itemIds.count)
+        let multipleItems = try #require(await xivapi.getSheetRows(.Item, rows: itemIds, queryItems: [URLQueryItem(name: "fields", value: "Name,Description,Icon")]) as [ItemMinimal]?)
+        #expect(multipleItems.count == itemIds.count)
         
-        let names = rows.map { $0.fields.Name }
+        let names = multipleItems.map { $0.fields.Name }
         #expect(names.contains("Grade 2 Gemdraught of Strength"))
         #expect(names.contains("Grade 8 Tincture of Strength"))
         #expect(names.contains("Moqueca"))

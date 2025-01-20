@@ -27,15 +27,20 @@ public extension xivapiClient {
         return response
     }
     
-    func getSheetRows<T: Codable>(_ sheet: Sheets, rows: [Int], queryItems: [URLQueryItem]? = nil) async -> T? {
+    func getSheetRows<T: Codable>(_ sheet: Sheets, rows: [Int], queryItems: [URLQueryItem]? = nil) async -> [T]? {
         await getSheetRows(sheet.rawValue, rows: rows, queryItems: queryItems)
     }
     
-    func getSheetRows<T: Codable>(_ name: String, rows: [Int], queryItems: [URLQueryItem]? = nil) async -> T? {
+    func getSheetRows<T: Codable>(_ name: String, rows: [Int], queryItems: [URLQueryItem]? = nil) async -> [T]? {
         let url = sheetUrl(name: name, ids: rows, queryItems: queryItems)
-        let response: T? = await loadData(url)
+        let response: MultiRows<T>? = await loadData(url)
         
-        return response
+        return response?.rows
+    }
+    
+    struct MultiRows<T: Codable>: Codable {
+        let schema: String
+        let rows: [T]
     }
         
     ///  get the recipe(s) for an item from the local dictionary
