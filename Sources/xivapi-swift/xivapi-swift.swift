@@ -38,11 +38,6 @@ public extension xivapiClient {
         return response?.rows
     }
     
-    struct MultiRows<T: Codable>: Codable {
-        let schema: String
-        let rows: [T]
-    }
-        
     ///  get the recipe(s) for an item from the local dictionary
     /// - Parameter itemId: itemId
     /// - Returns: the RecipeID(s) for the provided Item
@@ -70,14 +65,17 @@ public extension xivapiClient {
         return response
     }
     
-    func listVersions() async -> [String]? {
+    func listVersions() async -> [String]? { await listVersionsFull()?.versionNames }
+    func listSheets() async -> [String]? { await listSheetsFull()?.sheetNames }
+
+    func listVersionsFull() async -> VersionResponse? {
         let url = URLComponents(string: "\(baseUrl)/version")!.url!
-        return await loadData(url) as [String]?
+        return await loadData(url) as VersionResponse?
     }
     
-    func listSheets() async -> [String]? {
+    func listSheetsFull() async -> SheetResponse? {
         let url = URLComponents(string: "\(baseUrl)/sheet")!.url!
-        return await loadData(url) as [String]?
+        return await loadData(url) as SheetResponse?
     }
 }
 
