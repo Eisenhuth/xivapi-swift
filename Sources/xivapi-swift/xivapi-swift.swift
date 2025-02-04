@@ -4,7 +4,7 @@ public class xivapiClient: ObservableObject {
     
     public var schema: String?
     public var version: String?
-    public var baseUrl: URL = URL(string: "https://beta.xivapi.com/api/1")!
+    public var baseUrl: URL = URL(string: "https://v2.xivapi.com/api")!
     public var automaticallyPin: Bool = false
         
     public init(schema: String? = nil, version: String? = nil, baseUrl: URL? = nil, automaticallyPin: Bool = false) {

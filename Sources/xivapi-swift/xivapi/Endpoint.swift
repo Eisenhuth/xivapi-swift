@@ -8,7 +8,7 @@ struct Endpoint {
 
 extension Endpoint {
     
-    static let baseUrl: String = "https://beta.xivapi.com/api/1"
+    static let baseUrl: String = "https://v2.xivapi.com/api"
     
     static func asset(at path: String, format: Format = .jpg) -> URL?{
         var components = URLComponents(string: "\(baseUrl)/asset")!
