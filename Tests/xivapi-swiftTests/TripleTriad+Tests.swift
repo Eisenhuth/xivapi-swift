@@ -11,8 +11,8 @@ struct TripleTriad_Tests {
         #expect(card.row_id == 346)
         #expect(card.fields.Name == "Zenos Galvus")
         #expect(card.fields.Description == "“Did you find...fulfillment?”")
-        #expect(card.backgroundUrl != nil)
-        #expect(card.imageUrl(format: .png) != nil)
+        #expect(card.backgroundPath != nil)
+        #expect(card.imagePath != nil)
     }
     
     @Test("CardResident") func TripleTriadCardResident() async throws {

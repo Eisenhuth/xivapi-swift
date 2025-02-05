@@ -9,9 +9,11 @@ struct Map_Tests {
         let map = try #require(await xivapi.getMap(696))
         
         #expect(map.name == "Thavnair")
-        #expect(map.compositedMapUrl?.description == "\(xivapi.baseUrl)/asset/map/m5f1/00?format=jpg")
+        let compositedMapPath = xivapi.compositedAssetUrl(at: map.compositedMapPath, format: .jpg)
+        #expect(compositedMapPath.description == "\(xivapi.baseUrl)/asset/map/m5f1/00?format=jpg")
         #expect(map.region == "Ilsabard")
-        #expect(map.mapUrl(format: .jpg)?.description == "\(xivapi.baseUrl)/asset?path=ui/map/m5f1/00/m5f100_m.tex&format=jpg")
+        let mapPath = xivapi.assetUrl(at: map.mapPath, format: .jpg)
+        #expect(mapPath.description == "\(xivapi.baseUrl)/asset?path=ui/map/m5f1/00/m5f100_m.tex&format=jpg")
     }
 
 }

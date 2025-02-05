@@ -8,19 +8,14 @@ public extension XivMap {
     var name: String { fields.PlaceName.fields.Name }
     var region: String { fields.PlaceNameRegion.fields.Name }
     
-    func mapUrl(format: Format = .jpg) -> URL? {
+    var mapPath: String {
         let territoryId = fields.Id
         let path = "ui/map/\(territoryId)/\(territoryId.replacingOccurrences(of: "/", with: ""))_m.tex"
-        return Endpoint.asset(at: path, format: format)
+        return path
     }
     
     /// a map composed from the map and background textures
-    var compositedMapUrl: URL? {
-        let path = "map/\(fields.Id)"
-        var components = URLComponents(string: "\(Endpoint.baseUrl)/asset/\(path)")!
-        components.queryItems = [URLQueryItem(name: "format", value: "jpg")]
-        return components.url
-    }
+    var compositedMapPath: String { "map/\(fields.Id)" }
 }
 
 public struct MapFields: Codable {
