@@ -39,7 +39,7 @@ let map = await client.getMap(696) //Thavnair
 let trait = await client.getTrait(422) //Enhanced Unmend
 let action = await client.getAction(7393) //The Blackest Night
 ```
-there are extensions for a lot of the data, e.g. `Map` has `.mapUrl` to get the texture, or `TripleTriadCard`'s `.imageUrl` to get the card's artwork. I recommend not looking too closely at how specifically these URLs are constructed, that way lies madness.
+there are extensions for a lot of the data, e.g. `Map` has `.mapPath` to get the texture path, or `TripleTriadCard`'s `.imagePath` to get the path to the card's artwork. I recommend not looking too closely at how specifically these paths are constructed, that way lies madness.
 
 ## Sheets
 you can provide your own `Codable` structs for use with `.getSheet`
