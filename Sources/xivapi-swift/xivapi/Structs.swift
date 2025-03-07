@@ -28,3 +28,7 @@ public struct VersionResponse: Codable {
 public struct VersionEntry: Codable {
     let names: [String]
 }
+
+public struct SchemaResponse: Codable {
+    let schema: String
+}

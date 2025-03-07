@@ -119,4 +119,10 @@ struct Client_Tests {
         #expect(xivapi.schema == nil)
         #expect(xivapiPinned.assetUrl(at: "") != xivapi.assetUrl(at: "test"))
     }
+    
+    @Test("Test Schema") func TestSchema() async throws {
+        #expect(await xivapi.getCurrentSchema() != nil)
+        let pinnedResponse = try #require(await xivapiPinned.getCurrentSchema())
+        #expect(xivapiPinned.schema == pinnedResponse)
+    }
 }
