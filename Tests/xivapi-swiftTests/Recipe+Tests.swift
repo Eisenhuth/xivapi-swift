@@ -3,7 +3,7 @@ import xivapi_swift
 
 @Suite("Recipe")
 struct Recipe_Tests {
-    let xivapi = xivapiClient()
+    let xivapi = xivapiClient(automaticallyPin: true)
 
     @Test("Recipe: Tincture") func Recipe() async throws {
         let recipe = try #require(await xivapi.getRecipe(35918)) //Grade 2 Gemdraught of Strength

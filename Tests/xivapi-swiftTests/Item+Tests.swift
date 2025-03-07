@@ -4,7 +4,7 @@ import xivapi_swift
 
 @Suite("Item")
 struct Item_Tests {
-    let xivapi = xivapiClient()
+    let xivapi = xivapiClient(automaticallyPin: true)
 
     @Test("Item: Tincture") func ItemTincture() async throws {
         let item = try #require(await xivapi.getItem(44162)) //Item: Grade 2 Gemdraught of Strength
@@ -16,8 +16,8 @@ struct Item_Tests {
         #expect(item.canBeHq == true)
         #expect(item.cooldown == 300)
         #expect(item.description == "This diluted brew temporarily increases strength for twice the duration of similar potions.\n\nDuration: 30s")
-        #expect(xivapi.assetUrl(at: item.icon.path ?? "", format: .jpg).description ==  "\(xivapi.baseUrl)/asset?path=ui/icon/020000/020710.tex&format=jpg")
-        #expect(xivapi.assetUrl(at: item.icon.path_hr1 ?? "", format: .jpg).description == "\(xivapi.baseUrl)/asset?path=ui/icon/020000/020710_hr1.tex&format=jpg")
+        #expect(xivapi.assetUrl(at: item.icon.path ?? "", format: .jpg).description ==  "\(xivapi.baseUrl)/asset?path=ui/icon/020000/020710.tex&format=jpg&version=\(xivapi.version!)")
+        #expect(xivapi.assetUrl(at: item.icon.path_hr1 ?? "", format: .jpg).description == "\(xivapi.baseUrl)/asset?path=ui/icon/020000/020710_hr1.tex&format=jpg&version=\(xivapi.version!)")
         
         #expect(item.levelEquip == 1)
         #expect(item.itemLevel == 710)
@@ -40,7 +40,8 @@ struct Item_Tests {
         #expect(item.itemUICategory.fields?.Name == "Medicine")
         #expect(item.additionalData?.sheet == nil)
         #expect(item.bonuses.isEmpty == true)
-        #expect(item.itemFood != nil)
+        #expect(item.itemFood == 662)
+        #expect(item.fields.ItemAction.fields.type == 846)
         #expect(item.itemEffectNQ == nil)
         #expect(item.itemEffectHQ == nil)
         

@@ -3,7 +3,7 @@ import xivapi_swift
 
 @Suite("Triple Triad")
 struct TripleTriad_Tests {
-    let xivapi = xivapiClient()
+    let xivapi = xivapiClient(automaticallyPin: true)
 
     @Test("Card") func TripleTriadCard() async throws {
         let card: TripleTriadCard = try #require(await xivapi.getSheet(.TripleTriadCard, id: 346))
