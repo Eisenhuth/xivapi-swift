@@ -18,7 +18,7 @@ public struct TripleTriadCardResidentFields: Codable {
 //    public let Acquisition: //TODO
 //    public let Location: //TODO
 //    public let Quest: Quest //TODO: verify
-    public let AcquisitionType: Int
+//    public let AcquisitionType: TripleTriadCardObtain //TODO: add sheet TripleTriadCardObtain
     public let Order: Int
     public let Bottom: Int
     public let Left: Int
