@@ -129,6 +129,7 @@ public struct ItemFields: Codable {
     public let ItemUICategory: ItemUICategory
     public let LevelEquip: Int
     public let LevelItem: LevelItem
+    public let Lot: Bool
     public let Name: String
     public let PriceLow: Int
     public let PriceMid: Int
