@@ -29,10 +29,10 @@ struct Client_Tests {
         
         let assetUrl = xivapi.assetUrl(at: "ui/icon/030000/030639_hr1.tex", format: .png)
         
-        #expect(searchUrl1 != nil)
-        #expect(searchUrl2 != nil)
-        #expect(searchUrl3 != nil)
-        #expect(assetUrl != nil)
+        #expect(searchUrl1.description == "\(xivapi.baseUrl)/search?sheets=Item,Recipe&query=Name~%22Grade%202%22")
+        #expect(searchUrl2.description == "\(xivapi.baseUrl)/search?sheets=Recipe&query=ItemResult%3D39727")
+        #expect(searchUrl3.description == "\(xivapi.baseUrl)/search?sheets=Item,Recipe&query=LevelItem%3E%3D600")
+        #expect(assetUrl.description == "\(xivapi.baseUrl)/asset?path=ui/icon/030000/030639_hr1.tex&format=png")
     }
     
     @Test("Decode Item") func DecodeItem() async throws {

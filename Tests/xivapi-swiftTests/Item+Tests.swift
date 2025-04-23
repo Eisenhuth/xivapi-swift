@@ -9,7 +9,6 @@ struct Item_Tests {
     @Test("Item: Tincture") func ItemTincture() async throws {
         let item = try #require(await xivapi.getItem(44162)) //Item: Grade 2 Gemdraught of Strength
 
-        try #require(item != nil)
         #expect(item.fields.Name == "Grade 2 Gemdraught of Strength")
         #expect(item.fields.LevelItem.value == 710)
         
