@@ -20,8 +20,11 @@ public extension XivMap {
 
 public struct MapFields: Codable {
     public let Id: String
+    public let OffsetX: Int
+    public let OffsetY: Int
     public let PlaceName: PlaceName
     public let PlaceNameRegion: PlaceNameRegion
+    public let SizeFactor: Int
     public let TerritoryType: TerritoryType
 }
 

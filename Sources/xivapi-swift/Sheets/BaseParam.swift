@@ -1,11 +1,8 @@
 import Foundation
 
 public struct BaseParam: Codable {
-    public let value: Int
-    public let sheet: String
     public let row_id: Int
     public let fields: BaseParamFields
-    
     
     public struct BaseParamFields: Codable {
         public let BraceletPercent: Int
@@ -21,6 +18,7 @@ public struct BaseParam: Codable {
         public let HeadChestHandsLegsFeetPercent: Int
         public let HeadPercent: Int
         public let LegsFeetPercent: Int
+        public let LegsPercent: Int
         public let MeldParam: [Int]
         public let Name: String
         public let NecklacePercent: Int
@@ -31,9 +29,6 @@ public struct BaseParam: Codable {
         public let RingPercent: Int
         public let TwoHandWeaponPercent: Int
         public let UnderArmorPercent: Int
-        //        public let Unknown0: Int
-        //        public let Unknown1: Int
-        //        public let Unknown2: Bool
         public let WaistPercent: Int
     }
 }
