@@ -30,6 +30,7 @@ public extension Item {
     var isPvP: Bool { fields.IsPvP }
 //    var isUnique: Bool { fields.IsUnique }
     var isUntradable: Bool { fields.IsUntradable }
+    var isMarketable: Bool { fields.ItemSearchCategory.row_id > 0 }
     var levelEquip: Int { fields.LevelEquip }
     var levelItem: LevelItem { fields.LevelItem }
     var itemLevel: Int { levelItem.value }

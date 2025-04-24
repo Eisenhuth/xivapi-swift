@@ -28,6 +28,7 @@ struct Item_Tests {
         #expect(item.isIndisposable == false)
         #expect(item.isPvP == false)
         #expect(item.isUntradable == false)
+        #expect(item.isMarketable == true)
         
         #expect(item.name == "Grade 2 Gemdraught of Strength")
         #expect(item.priceLow == 95)
@@ -63,9 +64,10 @@ struct Item_Tests {
     }
     
     @Test("Item: Weapon") func ItemWeapon() async throws {
-        let item = try #require(await xivapi.getItem(36949))
+        let item = try #require(await xivapi.getItem(36949)) //Ultimate Claymore of the Heavens
         
         #expect(item.stats.damagePhys == 120)
+        #expect(item.isMarketable == false)
     }
     
     @Test("Item: Food") func ItemFood() async throws {
