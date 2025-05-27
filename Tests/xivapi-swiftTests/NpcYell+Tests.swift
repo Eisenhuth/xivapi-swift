@@ -11,7 +11,7 @@ struct NpcYell_Tests {
         //UCOB - Phase 2 - Nael: In -> Out
         let expectedEn = "O hallowed moon,\nshine you the iron path!"
         let expectedDe = "O roter Mond! Führe mich zur Herrschaft! "
-        let expectedFr = "Ô lune ! Éclaire la voie de la domination !"
+        let expectedFr = "Ô lune ! Éclaire la voie de la domination !"
         let expectedJa = "月よ！\n鉄の覇道を照らせ！"
         
         
