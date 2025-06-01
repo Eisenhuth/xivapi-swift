@@ -22,7 +22,7 @@ public struct QuestFields: Codable {
 //    public let EmoteReward: Emote
 //    public let EventIconType: EventIconType
     public let ExpFactor: Int
-//    public let Expansion: ExVersion
+    public let Expansion: ExVersion
 //    public let Festival: Festival
     public let GilReward: Int
     public let Icon: Icon
@@ -33,25 +33,25 @@ public struct QuestFields: Codable {
     public let Introduction: Bool
     public let IsHouseRequired: Bool
     public let IsRepeatable: Bool
-//    public let IssuerLocation: Level
+    public let IssuerLocation: Level
     public let IssuerStart: ENpcResident
     public let ItemCatalyst: [Item]
     public let ItemCountCatalyst: [Int]
     public let ItemCountReward: [Int]
     public let ItemRewardType: Int
-//    public let JournalGenre: JournalGenre
+    public let JournalGenre: JournalGenre
     public let LevelMax: Int
 //    public let MountRequired: Mount
     public let Name: String
     public let OptionalItemCountReward: [Int]
     public let OptionalItemIsHQReward: [Bool]
     public let OptionalItemReward: [Item]
-//    public let OptionalItemStainReward: [Stain]
+    public let OptionalItemStainReward: [Stain]
 //    public let OtherReward: QuestRewardOther
     public let PlaceName: PlaceName
 //    public let PreviousQuest: Quest //TODO: work around recursion
     public let Reward: [Item]
-//    public let RewardStain: [Stain]
+    public let RewardStain: [Stain]
     public let SatisfactionLevel: Int
 //    public let SatisfactionNpc: SatisfactionNpc
     public let TargetEnd: ENpcResident
