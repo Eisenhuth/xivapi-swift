@@ -175,7 +175,7 @@ public extension xivapiClient {
         let cursorQuery = URLQueryItem(name: "cursor", value: next)
         
         components.queryItems = [sheetsQuery]
-        components.percentEncodedQueryItems?.append(contentsOf: customQueries)
+        components.queryItems?.append(contentsOf: customQueries)
         if next != nil {
             components.queryItems?.append(cursorQuery)
         }
