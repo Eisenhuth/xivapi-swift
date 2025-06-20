@@ -1,6 +1,11 @@
 import Foundation
+#if canImport(Combine)
+public typealias CrossObservableObject = ObservableObject //(currently) only available on Apple platforms
+#else
+public protocol CrossObservableObject { } //empty, no ObservableObject sugar, but will otherwise work/compile on other platforms
+#endif
 
-public class xivapiClient: ObservableObject {
+public class xivapiClient: CrossObservableObject {
     
     public var schema: String?
     public var version: String?
