@@ -20,8 +20,8 @@ let client = xivapiClient()
 ```
 ```swift
 //option 2 - providing your own schema/version
-let schema = "exdschema@9942dd96c70dfbba55bbc4280da144e5cb410737-2024.11.06.0000.0000"
-let client = xivapiClient(schema: schema, version: "7.15")
+let schema = "exdschema@2:rev:32915615cef89fdda3815f653943d24ea00761b5"
+let client = xivapiClient(schema: schema, version: "7.25")
 ```
 ```swift
 //option 3 - using the schema/version this version of the package was verified against
@@ -39,7 +39,21 @@ let map = await client.getMap(696) //Thavnair
 let trait = await client.getTrait(422) //Enhanced Unmend
 let action = await client.getAction(7393) //The Blackest Night
 ```
-there are extensions for a lot of the data, e.g. `Map` has `.mapPath` to get the texture path, or `TripleTriadCard`'s `.imagePath` to get the path to the card's artwork. I recommend not looking too closely at how specifically these paths are constructed, that way lies madness.
+there are extensions for a lot of the data, e.g. `Map` has `.mapPath`/`.compositedMapPath` to get the texture paths, or `TripleTriadCard`'s `.imagePath` to get the path to the card's artwork. I recommend not looking too closely at how specifically these paths are constructed, that way lies madness.
+
+## Assets
+
+- using `.assetUrl(at:)` you can quickly get the URL
+  - this automatically uses the client's `.version`
+  - the client defaults to `.jpg` for assets
+    - to get e.g. `.png` you would use `.assetUrl(at: path, format: .png)`
+
+```swift
+if let compositedMapPath = map?.compositedMapPath, let mapPath = map?.mapPath {
+    let compositedMapUrl = client.compositedAssetUrl(at: compositedMapPath)
+    let rawMapUrl = client.assetUrl(at: mapPath)
+}
+```
 
 ## Sheets
 you can provide your own `Codable` structs for use with `.getSheet`
@@ -63,6 +77,9 @@ print(ttCard?.fields.Description ?? "description") //“Did you find...fulfillme
 ```
 
 ## Item:Recipe lookup
+
+the package contains a pre-generated dictionary that maps `ItemID` to `[RecipeID]`
+
 ```swift
 if let recipeId = await client.getItemRecipes(itemId: 39727)?.first {
     let recipe = await client.getRecipe(recipeId)
