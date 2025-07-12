@@ -137,4 +137,11 @@ struct Client_Tests {
         let pinnedResponse = try #require(await xivapiPinned.getCurrentSchema())
         #expect(xivapiPinned.schema == pinnedResponse)
     }
+    
+    @Test("Test Sheet List") func TestSheetList() async throws {
+        let sheetsResponse = try #require(await xivapi.listSheets()?.filter ({ $0.contains("/") == false }))
+        let clientSheets = Sheets.allCases.map { $0.rawValue }
+        
+        #expect(sheetsResponse == clientSheets)
+    }
 }

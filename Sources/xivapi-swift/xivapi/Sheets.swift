@@ -1,6 +1,6 @@
 import Foundation
 
-public enum Sheets: String {
+public enum Sheets: String, CaseIterable {
     case AOZArrangement
     case AOZBoss
     case AOZContent
@@ -168,8 +168,8 @@ public enum Sheets: String {
     case ChocoboTaxiStand
     case CircleActivity
     case ClassJob
-    case ClassJobActionSort
     case ClassJobActionUI
+    case ClassJobActionUICategory
     case ClassJobCategory
     case ClassJobResident
     case CollectablesRefine
@@ -238,7 +238,6 @@ public enum Sheets: String {
     case CraftActionIndirection
     case CraftLeve
     case CraftLeveTalk
-    case CraftLevelDifference
     case CraftType
     case Credit
     case CreditBackImage
@@ -307,6 +306,7 @@ public enum Sheets: String {
     case DynamicEventSet
     case DynamicEventSingleBattle
     case DynamicEventType
+    case DynamicEventUIType
     case ENpcBase
     case ENpcDressUp
     case ENpcDressUpDress
@@ -339,6 +339,7 @@ public enum Sheets: String {
     case EurekaStoryProgress
     case EventAction
     case EventCustomIconType
+    case EventExtraConditionSet
     case EventGimmickPathMove
     case EventIconPriority
     case EventIconPriorityPair
@@ -395,6 +396,7 @@ public enum Sheets: String {
     case FittingShopCategory
     case FittingShopCategoryItem
     case FittingShopItemSet
+    case FollowMount
     case Frontline
     case Frontline01
     case Frontline02
@@ -572,6 +574,7 @@ public enum Sheets: String {
     case ItemAction
     case ItemActionTelepo
     case ItemBarterCheck
+    case ItemBarterWarning
     case ItemFood
     case ItemLevel
     case ItemOnceHqMasterpiece
@@ -657,7 +660,14 @@ public enum Sheets: String {
     case MJIVillageAppearanceSG
     case MJIVillageAppearanceUI
     case MJIVillageDevelopment
+    case MKDBNpcData
+    case MKDChain
     case MKDData
+    case MKDGrowData
+    case MKDGrowDataSJob
+    case MKDLore
+    case MKDSupportJob
+    case MKDTrait
     case MYCTemporaryItem
     case MYCTemporaryItemUICategory
     case MYCWarResultNotebook
@@ -803,6 +813,7 @@ public enum Sheets: String {
     case PvPInitialSelectActionTrait
     case PvPRank
     case PvPRankTransient
+    case PvPSelectAction
     case PvPSelectTrait
     case PvPSelectTraitTransient
     case PvPSeries
@@ -839,6 +850,7 @@ public enum Sheets: String {
     case QuestRedoChapterUICategory
     case QuestRedoChapterUITab
     case QuestRedoIncompChapter
+    case QuestRedoValidCustomTalk
     case QuestRepeatFlag
     case QuestRewardOther
     case QuestSceneAbortCondition
@@ -960,6 +972,8 @@ public enum Sheets: String {
     case SwitchTalkVariation
     case SystemGraphicPreset
     case TelepoRelay
+    case TerritoryAethernet
+    case TerritoryAetheryteList
     case TerritoryChatRule
     case TerritoryIntendedUse
     case TerritoryType
@@ -1024,23 +1038,55 @@ public enum Sheets: String {
     case Vase
     case VaseFlower
     case WKSAchievement
+    case WKSAchievementDailyDefine
+    case WKSAchievementRewardItem
     case WKSCosmoToolClass
+    case WKSCosmoToolCommonLevel
     case WKSCosmoToolDataAmount
+    case WKSCosmoToolName
     case WKSCosmoToolPassiveBuff
     case WKSDevGrade
+    case WKSDevGradeBGSet
     case WKSEmergencyInfo
-    case WKSEmergencyLivelyActorGroup
+    case WKSEmergencyInfoText
+    case WKSEmergencyMission
+    case WKSEmergencyMissionGroup
+    case WKSEmergencyProblem
+    case WKSFateControl
+    case WKSFortunePatternUIColorSet
+    case WKSFortunePatternUIPlace
+    case WKSFortunePrizeGrade
+    case WKSFortuneSPPatternUIPlace
     case WKSFunction
     case WKSItemInfo
-    case WKSMechaEventContribution
+    case WKSItemSubCategory
     case WKSMechaEventData
     case WKSMechaEventObject
     case WKSMechaEventObjectGroup
+    case WKSMechaEventRewardUI
+    case WKSMechaLivelyActorGroup
+    case WKSMissionInfo
+    case WKSMissionLotterySpecialCond
+    case WKSMissionMapMarker
     case WKSMissionPromotionCondition
     case WKSMissionRecipe
+    case WKSMissionReward
+    case WKSMissionSupplyItem
+    case WKSMissionText
+    case WKSMissionToDo
+    case WKSMissionToDoEvalutionItem
+    case WKSMissionToDoEvalutionRefin
     case WKSMissionToDoSuccessType
     case WKSMissionUnit
+    case WKSParam
+    case WKSPioneeringTrail
+    case WKSPioneeringTrailString
+    case WKSPraiseHologram
+    case WKSScoreList
     case WKSSharedGroup
+    case WKSTerritoryInfo
+    case WKSText
+    case WKSZoneFloorCollision
     case Warp
     case WarpCondition
     case WarpLogic
