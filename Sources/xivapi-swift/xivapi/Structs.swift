@@ -32,3 +32,7 @@ public struct VersionEntry: Codable {
 public struct SchemaResponse: Codable {
     let schema: String
 }
+
+public struct ValueStruct: Codable {
+    public let value: Int
+}
