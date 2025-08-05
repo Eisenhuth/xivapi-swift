@@ -101,16 +101,16 @@ struct Client_Tests {
     }
     
     //MARK: other sheets
-    @Test("Decode AozAction") func DecodeAozAction() async throws { #expect(await xivapi.getSheet(.AozAction, id: 2) as AozAction? != nil) }
-    @Test("Decode BGM") func DecodeBGM() async throws { #expect(await xivapi.getSheet(.BGM, id: 50) as BGM? != nil) }
-    @Test("Decode ClassJob") func DecodeClassJob() async throws { #expect(await xivapi.getSheet(.ClassJob, id: 1) as ClassJob? != nil) }
-    @Test("Decode ContentFinderCondition") func DecodeContentFinderCondition() async throws { #expect(await xivapi.getSheet(.ContentFinderCondition, id: 1) as ContentFinderCondition? != nil) }
-    @Test("Decode ENpcResident") func DecodeENpcResident() async throws { #expect(await xivapi.getSheet(.ENpcResident, id: 1005634) as ENpcResident? != nil) }
-    @Test("Decode InstanceContent") func DecodeInstanceContent() async throws { #expect(await xivapi.getSheet(.InstanceContent, id: 1) as InstanceContent? != nil) }
-    @Test("Decode PvPAction") func DecodePvPAction() async throws { #expect(await xivapi.getSheet(.PvPAction, id: 1) as PvPAction? != nil) }
-    @Test("Decode Status") func DecodeStatus() async throws { #expect(await xivapi.getSheet(.Status, id: 1) as XivStatus? != nil) }
-    @Test("Decode Town") func DecodeTown() async throws { #expect(await xivapi.getSheet(.Town, id: 1) as Town? != nil) }
-    @Test("Decode TripleTriadCard") func DecodeTripleTriadCard() async throws { #expect(await xivapi.getSheet(.TripleTriadCard, id: 346) as TripleTriadCard? != nil) }
+    @Test("Decode AozAction") func DecodeAozAction() async throws { #expect(await xivapiPinned.getSheet(.AozAction, id: 2) as AozAction? != nil) }
+    @Test("Decode BGM") func DecodeBGM() async throws { #expect(await xivapiPinned.getSheet(.BGM, id: 50) as BGM? != nil) }
+    @Test("Decode ClassJob") func DecodeClassJob() async throws { #expect(await xivapiPinned.getSheet(.ClassJob, id: 1) as ClassJob? != nil) }
+    @Test("Decode ContentFinderCondition") func DecodeContentFinderCondition() async throws { #expect(await xivapiPinned.getSheet(.ContentFinderCondition, id: 1) as ContentFinderCondition? != nil) }
+    @Test("Decode ENpcResident") func DecodeENpcResident() async throws { #expect(await xivapiPinned.getSheet(.ENpcResident, id: 1005634) as ENpcResident? != nil) }
+    @Test("Decode InstanceContent") func DecodeInstanceContent() async throws { #expect(await xivapiPinned.getSheet(.InstanceContent, id: 1) as InstanceContent? != nil) }
+    @Test("Decode PvPAction") func DecodePvPAction() async throws { #expect(await xivapiPinned.getSheet(.PvPAction, id: 1) as PvPAction? != nil) }
+    @Test("Decode Status") func DecodeStatus() async throws { #expect(await xivapiPinned.getSheet(.Status, id: 1) as XivStatus? != nil) }
+    @Test("Decode Town") func DecodeTown() async throws { #expect(await xivapiPinned.getSheet(.Town, id: 1) as Town? != nil) }
+    @Test("Decode TripleTriadCard") func DecodeTripleTriadCard() async throws { #expect(await xivapiPinned.getSheet(.TripleTriadCard, id: 346) as TripleTriadCard? != nil) }
     
     //MARK: others
     @Test("List Versions") func ListVersions() async throws {
