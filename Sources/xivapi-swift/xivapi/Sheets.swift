@@ -152,6 +152,8 @@ public enum Sheets: String, CaseIterable {
     case CharaMakeCustomize
     case CharaMakeName
     case CharaMakeType
+    case ChatBubbleSampeTextList
+    case ChatBubbleType
     case ChocoboRace
     case ChocoboRaceAbility
     case ChocoboRaceAbilityType
@@ -261,6 +263,7 @@ public enum Sheets: String, CaseIterable {
     case CutsceneMotion
     case CutsceneName
     case CutsceneWorkIndex
+    case CuttingGrass
     case CycleTime
     case DailySupplyItem
     case DawnContent
@@ -270,16 +273,20 @@ public enum Sheets: String, CaseIterable {
     case DawnMemberUIParam
     case DawnQuestMember
     case DeepDungeon
+    case DeepDungeon4GimmickEffect
+    case DeepDungeon4GimmickEffectTransient
     case DeepDungeonBan
     case DeepDungeonDanger
     case DeepDungeonDemiclone
     case DeepDungeonEquipment
     case DeepDungeonFloorEffectUI
     case DeepDungeonGrowData
+    case DeepDungeonHardModeItem
     case DeepDungeonItem
     case DeepDungeonLayer
     case DeepDungeonMagicStone
     case DeepDungeonMap5X
+    case DeepDungeonResident
     case DeepDungeonRoom
     case DeepDungeonStatus
     case DefaultTalk
@@ -353,6 +360,8 @@ public enum Sheets: String, CaseIterable {
     case EventPathMove
     case EventSituationIconTooltip
     case EventSystemDefine
+    case EventTutorial
+    case EventTutorialPage
     case EventVfx
     case ExHotbarCrossbarIndexType
     case ExVersion
@@ -427,6 +436,7 @@ public enum Sheets: String, CaseIterable {
     case GFateRoulette
     case GFateStelth
     case GFateType
+    case GameConditionValueArray
     case GameRewardObtainType
     case GardeningSeed
     case GathererCrafterLvAdjustTable
@@ -521,6 +531,7 @@ public enum Sheets: String, CaseIterable {
     case HWDSharedGroup
     case HWDSharedGroupControlParam
     case HairMakeType
+    case HalloweenNpcSelect
     case HouseRetainerPose
     case HousingAethernet
     case HousingAppeal
@@ -609,6 +620,8 @@ public enum Sheets: String, CaseIterable {
     case LeveVfx
     case Level
     case LinkRace
+    case LiveMinigames
+    case LiveMinigamesTerritoryType
     case LivelyActorGroup
     case LoadingImage
     case LoadingTips
@@ -793,6 +806,7 @@ public enum Sheets: String, CaseIterable {
     case PlaceName
     case PlaceNameReplace
     case PlantPotFlowerSeed
+    case Platform
     case PlayerSearchLocation
     case PlayerSearchSubLocation
     case PointMenu
@@ -923,6 +937,7 @@ public enum Sheets: String, CaseIterable {
     case ScenarioType
     case ScreenImage
     case SecretRecipeBook
+    case SecretRecipeBookGroup
     case SequentialEvent
     case SequentialEventMultipleRange
     case SharlayanCraftWorks
@@ -983,6 +998,7 @@ public enum Sheets: String, CaseIterable {
     case TextCommandParam
     case TiltParam
     case Title
+    case TofuBg
     case TofuEditParam
     case TofuObject
     case TofuObjectCategory
@@ -1027,6 +1043,7 @@ public enum Sheets: String, CaseIterable {
     case UDS_Property
     case UDS_Stats
     case UIColor
+    case UIColorPickerTable
     case UIConst
     case UILevelLookup
     case VFX
@@ -1035,6 +1052,8 @@ public enum Sheets: String, CaseIterable {
     case VVDNotebookSeries
     case VVDRouteData
     case VVDVariantAction
+    case ValentionSweetsMaterial
+    case ValentionSweetsRecipe
     case Vase
     case VaseFlower
     case WKSAchievement
@@ -1064,8 +1083,10 @@ public enum Sheets: String, CaseIterable {
     case WKSMechaEventObject
     case WKSMechaEventObjectGroup
     case WKSMechaEventRewardUI
+    case WKSMechaFieldSearcher
     case WKSMechaLivelyActorGroup
     case WKSMissionInfo
+    case WKSMissionLotteryCond
     case WKSMissionLotterySpecialCond
     case WKSMissionMapMarker
     case WKSMissionPromotionCondition
@@ -1078,10 +1099,13 @@ public enum Sheets: String, CaseIterable {
     case WKSMissionToDoEvalutionRefin
     case WKSMissionToDoSuccessType
     case WKSMissionUnit
+    case WKSNextPlanetGuidance
     case WKSParam
     case WKSPioneeringTrail
     case WKSPioneeringTrailString
+    case WKSPlanetSelect
     case WKSPraiseHologram
+    case WKSPraiseUI
     case WKSScoreList
     case WKSSharedGroup
     case WKSTerritoryInfo
@@ -1100,6 +1124,7 @@ public enum Sheets: String, CaseIterable {
     case WeddingBGM
     case WeddingFlowerColor
     case WeddingPlan
+    case WeeklyBingoMultipleOrder
     case WeeklyBingoOrderData
     case WeeklyBingoRewardData
     case WeeklyBingoText
@@ -1107,6 +1132,7 @@ public enum Sheets: String, CaseIterable {
     case WeeklyLotBonusThreshold
     case World
     case WorldDCGroupType
+    case XBMPet
     case XPVPGroupActivity
     case YKW
     case YardCatalogCategory
