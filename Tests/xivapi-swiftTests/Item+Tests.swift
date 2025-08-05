@@ -101,4 +101,15 @@ struct Item_Tests {
         #expect(item.description.isEmpty == false)
         #expect(item.icon.path != nil)
     }
+    
+    @Test func ItemVendorSellPrices() async throws {
+        let platinum = try #require(await xivapi.getItem(5827))
+        let materia = try #require(await xivapi.getItem(41771))
+        
+        #expect(platinum.priceLow == 10_000)
+        #expect(platinum.vendorSellPrice == 10_000)
+        
+        #expect(materia.priceLow == 197)
+        #expect(materia.vendorSellPrice == 217)
+    }
 }

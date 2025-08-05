@@ -97,6 +97,19 @@ public extension Item {
     var stats: Stats {
         .init(block: fields.Block, blockRate: fields.BlockRate, damageMag: fields.DamageMag, damagePhys: fields.DamagePhys, defenseMag: fields.DefenseMag, defensePhys: fields.DefensePhys, delayms: fields.Delayms)
     }
+    
+    var vendorSellPrice: Int { calculateVendorSellPrice(self) }
+}
+
+//IDA take the wheel, thanks Critical
+func calculateVendorSellPrice(_ item: Item) -> Int {
+    
+    //Materia
+    if item.fields.FilterGroup == 13 {
+        return (11 * item.priceLow + 9) / 10;
+    }
+    
+    return item.priceLow
 }
 
 public struct ItemFields: Codable {
@@ -115,6 +128,8 @@ public struct ItemFields: Codable {
     public let Delayms: Int
     public let Description: String
 //    public let EquipSlotCategory: EquipSlotCategory
+    public let FilterGroup: Int
+    public let GrandCompany: GrandCompany
     public let Icon: Icon
     public let IsAdvancedMeldingPermitted: Bool
     public let IsCollectable: Bool
