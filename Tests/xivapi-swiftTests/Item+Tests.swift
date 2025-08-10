@@ -94,6 +94,18 @@ struct Item_Tests {
         #expect(item.name == "Origenics Monitor Desk")
     }
     
+    @Test("Item: Occult Crescent") func ItemArcanaut() async throws {
+        let item = try #require(await xivapi.getItem(47770))
+        
+        #expect(item.bonusesSpecial.contains(where: { $0.name == "Special Attribute"  && $0.value == 3}))
+    }
+    
+    @Test("Item: Eureka") func ItemElemental() async throws {
+        let item = try #require(await xivapi.getItem(24759))
+        
+        #expect(item.bonusesSpecial.contains(where: { $0.name == "Elemental Bonus"  && $0.value == 131}))
+    }
+    
     @Test func ItemMinimal() async throws {
         let item = try #require(await xivapi.getItemMinimal(44162))
         

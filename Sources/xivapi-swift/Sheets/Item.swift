@@ -58,6 +58,19 @@ public extension Item {
         return _stats.filter { $0.value != 0 }
     }
     
+    var bonusesSpecial: [Stat] {
+        var _stats = [Stat]()
+        
+        for i in 0..<fields.BaseParamValueSpecial.count {
+            let name = fields.BaseParamSpecial[i].fields.Name
+            let value = fields.BaseParamValueSpecial[i]
+            
+            _stats.append(Stat(name: name, value: value))
+        }
+        
+        return _stats.filter { $0.value != 0 }
+    }
+  
     var itemFood: Int? {
         let itemAction = fields.ItemAction
         let consumables = [844, 845, 846]
@@ -116,7 +129,10 @@ public struct ItemFields: Codable {
     public let AdditionalData: AdditionalData?
     public let CanBeHq: Bool
     public let BaseParam: [BaseParam]
+    public let BaseParamSpecial: [BaseParam]
+    public let BaseParamModifier: Int
     public let BaseParamValue: [Int]
+    public let BaseParamValueSpecial: [Int]
     public let Block: Int
     public let BlockRate: Int
     public let ClassJobCategory: ClassJobCategory
@@ -142,6 +158,10 @@ public struct ItemFields: Codable {
     public let IsUntradable: Bool
     public let ItemAction: ItemAction
     public let ItemSearchCategory: ItemSearchCategory
+//    public let ItemSeries: ItemSeries?
+//    public let ItemSortCategory: ItemSortCategory?
+//    public let ItemSpecialBonus: ItemSpecialBonus?
+//    public let ItemSpecialBonusParam
     public let ItemUICategory: ItemUICategory
     public let LevelEquip: Int
     public let LevelItem: LevelItem
