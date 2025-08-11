@@ -97,12 +97,14 @@ struct Item_Tests {
     @Test("Item: Occult Crescent") func ItemArcanaut() async throws {
         let item = try #require(await xivapi.getItem(47770))
         
+        #expect(item.bonuses.contains(where: { $0.name == "Strength"  && $0.value == 403}))
         #expect(item.bonusesSpecial.contains(where: { $0.name == "Special Attribute"  && $0.value == 3}))
     }
     
     @Test("Item: Eureka") func ItemElemental() async throws {
         let item = try #require(await xivapi.getItem(24759))
         
+        #expect(item.bonuses.contains(where: { $0.name == "Strength"  && $0.value == 139}))
         #expect(item.bonusesSpecial.contains(where: { $0.name == "Elemental Bonus"  && $0.value == 131}))
     }
     
