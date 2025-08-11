@@ -44,26 +44,15 @@ public extension Item {
     
     var itemUICategory: ItemUICategory { fields.ItemUICategory }
     var additionalData: AdditionalData? { fields.AdditionalData }
-    var bonuses: [Stat] {
-        
-        var _stats = [Stat]()
-        
-        for i in 0..<fields.BaseParamValue.count {
-            let name = fields.BaseParam[i].fields.Name
-            let value = fields.BaseParamValue[i]
-            
-            _stats.append(Stat(name: name, value: value))
-        }
-        
-        return _stats.filter { $0.value != 0 }
-    }
+    var bonuses: [Stat] { getStats(from: fields.BaseParam, with: fields.BaseParamValue) }
+    var bonusesSpecial: [Stat] { getStats(from: fields.BaseParamSpecial, with: fields.BaseParamValueSpecial) }
     
-    var bonusesSpecial: [Stat] {
+    func getStats(from baseParams: [BaseParam], with values: [Int]) -> [Stat] {
         var _stats = [Stat]()
         
-        for i in 0..<fields.BaseParamValueSpecial.count {
-            let name = fields.BaseParamSpecial[i].fields.Name
-            let value = fields.BaseParamValueSpecial[i]
+        for i in 0..<baseParams.count {
+            let name = baseParams[i].fields.Name
+            let value = values[i]
             
             _stats.append(Stat(name: name, value: value))
         }
