@@ -193,6 +193,16 @@ public struct Stats {
     public let defenseMag: Int
     public let defensePhys: Int
     public let delayms: Int
+    
+    public init(block: Int, blockRate: Int, damageMag: Int, damagePhys: Int, defenseMag: Int, defensePhys: Int, delayms: Int) {
+        self.block = block
+        self.blockRate = blockRate
+        self.damageMag = damageMag
+        self.damagePhys = damagePhys
+        self.defenseMag = defenseMag
+        self.defensePhys = defensePhys
+        self.delayms = delayms
+    }
 }
 
 
