@@ -1,4 +1,4 @@
 import Foundation
 
-public let verifiedVersion = "7.31"
+public let verifiedVersion = "7.35"
 public let verifiedSchema = "exdschema@2:rev:6a5085f56918e526c457fd3e9dfd27d3572c72a7"
