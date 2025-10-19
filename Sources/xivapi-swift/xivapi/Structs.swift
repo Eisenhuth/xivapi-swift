@@ -20,12 +20,17 @@ public struct SheetEntry: Codable {
 public struct VersionResponse: Codable {
     let versions: [VersionEntry]
     
-    var versionNames: [String] {
+    public var versionNames: [String] {
         versions.flatMap(\.names)
+    }
+    
+    public var latestKey: String? {
+        versions.first { $0.names.contains("latest") }?.key
     }
 }
 
 public struct VersionEntry: Codable {
+    let key: String
     let names: [String]
 }
 

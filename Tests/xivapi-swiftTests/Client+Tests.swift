@@ -114,9 +114,9 @@ struct Client_Tests {
     
     //MARK: others
     @Test("List Versions") func ListVersions() async throws {
-        let versions = try #require(await xivapi.listVersions())
-        #expect(versions.count > 1)
-        #expect(versions.contains("latest"))
+        let versions = try #require(await xivapi.listVersionsFull())
+        #expect(versions.versionNames.count > 1)
+        #expect(versions.latestKey != nil)
     }
     
     @Test("List Sheets") func ListSheets() async throws {
