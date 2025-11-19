@@ -9,11 +9,17 @@ struct Map_Tests {
         let map = try #require(await xivapi.getMap(696))
         
         #expect(map.name == "Thavnair")
-        let compositedMapPath = xivapi.compositedAssetUrl(at: map.compositedMapPath, format: .jpg)
-        #expect(compositedMapPath.description == "\(xivapi.baseUrl)/asset/map/m5f1/00?format=jpg")
         #expect(map.region == "Ilsabard")
-        let mapPath = xivapi.assetUrl(at: map.mapPath, format: .jpg)
-        #expect(mapPath.description == "\(xivapi.baseUrl)/asset?path=ui/map/m5f1/00/m5f100_m.tex&format=jpg")
+        
+        [Format.jpg, .png, .webp].forEach { format in
+            let mapPath = xivapi.assetUrl(at: map.mapPath, format: format)
+            #expect(mapPath.description == "\(xivapi.baseUrl)/asset?path=ui/map/m5f1/00/m5f100_m.tex&format=\(format.rawValue)")
+            print("mapPath assetUrl: \(mapPath)")
+            
+            let compositedMapPath = xivapi.compositedAssetUrl(at: map.compositedMapPath, format: format)
+            #expect(compositedMapPath.description == "\(xivapi.baseUrl)/asset/map/m5f1/00?format=\(format.rawValue)")
+            print("mapPath composited: \(compositedMapPath)")
+        }
     }
 
 }
