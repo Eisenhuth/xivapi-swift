@@ -27,6 +27,10 @@ public struct VersionResponse: Codable {
     public var latestKey: String? {
         versions.first { $0.names.contains("latest") }?.key
     }
+    
+    public var latestVersion: String? {
+        versions.first(where: { $0.names.contains("latest") })?.names.first(where: { $0 != "latest" })
+    }
 }
 
 public struct VersionEntry: Codable {

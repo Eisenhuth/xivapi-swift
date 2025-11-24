@@ -83,8 +83,8 @@ public extension xivapiClient {
         return await loadData(url) as SheetResponse?
     }
     
-    func getCurrentSchema() async -> String? {
-        let response: SchemaResponse? = await loadData(schemaUrl())
+    func getSchema() async -> String? {
+        let response: SchemaResponse? = await loadData(schemaUrl(schema: schema))
         return response?.schema
     }
 }
@@ -207,7 +207,10 @@ public extension xivapiClient {
         return components.url!
     }
     
-    func schemaUrl() -> URL {
-        URLComponents(string: "\(baseUrl)/sheet/Item?rows=0&fields=")!.url!
+    func schemaUrl(schema: String? = nil) -> URL {
+        var components = URLComponents(string: "\(baseUrl)/sheet/Item?rows=0&fields=")!
+        if let schema { components.queryItems?.append(URLQueryItem(name: "schema", value: schema)) }
+        
+        return components.url!
     }
 }

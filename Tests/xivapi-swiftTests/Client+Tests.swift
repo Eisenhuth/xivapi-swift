@@ -114,9 +114,11 @@ struct Client_Tests {
     
     //MARK: others
     @Test("List Versions") func ListVersions() async throws {
-        let versions = try #require(await xivapi.listVersionsFull())
-        #expect(versions.versionNames.count > 1)
-        #expect(versions.latestKey != nil)
+        let versionsFull = try #require(await xivapi.listVersionsFull())
+        let versions = try #require(await xivapi.listVersions())
+        #expect(versionsFull.versionNames == versions)
+        #expect(versionsFull.latestKey != nil)
+        #expect(versionsFull.latestVersion != nil)
     }
     
     @Test("List Sheets") func ListSheets() async throws {
@@ -133,8 +135,17 @@ struct Client_Tests {
     }
     
     @Test("Test Schema") func TestSchema() async throws {
-        #expect(await xivapi.getCurrentSchema() != nil)
-        let pinnedResponse = try #require(await xivapiPinned.getCurrentSchema())
+        #expect(await xivapi.getSchema() != nil)
+        #expect(await xivapiPinned.getSchema() == xivapiPinned.schema)
+    }
+    
+    @Test("Check Verified") func CheckVerified() async throws {
+        let pinnedResponse = try #require(await xivapiPinned.getSchema())
+        let unpinnnedResponse = try #require(await xivapi.getSchema())
+        let latestVersion = try #require (await xivapi.listVersionsFull()?.latestVersion)
+        
+        #expect(pinnedResponse == unpinnnedResponse)
+        #expect(xivapiPinned.version == latestVersion)
         #expect(xivapiPinned.schema == pinnedResponse)
     }
     
