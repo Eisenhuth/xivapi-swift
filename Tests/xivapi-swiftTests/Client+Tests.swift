@@ -73,22 +73,22 @@ struct Client_Tests {
     }
     
     @Test("Decode Map") func DecodeMap() async throws {
-        let map = try #require(await xivapi.getMap(696))
+        let map = try #require(await xivapiPinned.getMap(696))
         #expect(map.name == "Thavnair")
     }
     
     @Test("Decode Trait") func DecodeTrait() async throws {
-        let trait = try #require(await xivapi.getTrait(422))
+        let trait = try #require(await xivapiPinned.getTrait(422))
         #expect(trait.name == "Enhanced Unmend")
     }
     
     @Test("Decode Action") func DecodeAction() async throws {
-        let action = try #require(await xivapi.getAction(7393))
+        let action = try #require(await xivapiPinned.getAction(7393))
         #expect(action.name == "The Blackest Night")
     }
     
     @Test("Decode Quest") func DecodeQuest() async throws {
-        let quest = try #require (await xivapi.getSheet(.Quest, id: 65973) as Quest?)
+        let quest = try #require (await xivapiPinned.getSheet(.Quest, id: 65973) as Quest?)
         #expect(quest.fields.Name == "Triple Triad Trial")
         #expect(quest.fields.IssuerStart.fields.Singular.capitalized == "Triple Triad Master")
         #expect(quest.fields.Reward.filter { $0.row_id != 0}.map { $0.row_id } == [9772, 9774, 9777, 9778, 9781])

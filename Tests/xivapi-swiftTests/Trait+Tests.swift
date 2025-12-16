@@ -3,7 +3,7 @@ import xivapi_swift
 
 @Suite("Trait")
 struct Trait_Tests {
-    let xivapi = xivapiClient()
+    let xivapi = xivapiClient(automaticallyPin: true)
     
     @Test("Enhanced Unmend") func Trait() async throws {
         let trait = try #require(await xivapi.getTrait(422))

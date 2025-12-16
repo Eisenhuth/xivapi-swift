@@ -3,7 +3,7 @@ import xivapi_swift
 
 @Suite("Action")
 struct Action_Tests {
-    let xivapi = xivapiClient()
+    let xivapi = xivapiClient(automaticallyPin: true)
     
     @Test("Blue Mage") func AozAction() async throws {
         let action = try #require(await xivapi.getSheet(.AozAction, id: 104) as AozAction?)

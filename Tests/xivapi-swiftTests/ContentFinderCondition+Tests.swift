@@ -3,7 +3,7 @@ import xivapi_swift
 
 @Suite("ContentFinderCondition")
 struct ContentFinderCondition_Tests {
-    let xivapi = xivapiClient()
+    let xivapi = xivapiClient(automaticallyPin: true)
     
     @Test("Dungeon") func ContentFinderCondition() async throws {
         let dungeon = try #require(await xivapi.getSheet(.ContentFinderCondition, id: 1) as ContentFinderCondition?)

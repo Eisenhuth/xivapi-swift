@@ -204,6 +204,7 @@ public extension xivapiClient {
     func compositedAssetUrl(at path: String, format: Format = .jpg) -> URL{
         var components = URLComponents(string: "\(baseUrl)/asset/\(path)")!
         components.queryItems = [URLQueryItem(name: "format", value: format.rawValue)]
+        if let version { components.queryItems?.append(URLQueryItem(name: "version", value: version)) }
         return components.url!
     }
     
