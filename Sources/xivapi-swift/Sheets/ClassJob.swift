@@ -12,7 +12,8 @@ public struct ClassJobFields: Codable {
 //    public let ClassJobParent: ClassJob //TODO: work around recursion
     public let IsLimitedJob: Bool
     public let ItemSoulCrystal: Item
-    public let ItemStartingWeapon: Item
+    public let ItemStartingWeaponMainHand: Item
+    public let ItemStartingWeaponOffHand: Item
     public let LimitBreak1: Action
     public let LimitBreak2: Action
     public let LimitBreak3: Action

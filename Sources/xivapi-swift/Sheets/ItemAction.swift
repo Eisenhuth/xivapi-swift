@@ -7,11 +7,9 @@ public struct ItemAction: Codable {
 public struct ItemActionFields: Codable {
     public let Data: [Int]
     public let DataHQ: [Int]
-    public let type: Int
+    public let Action: ItemActionFieldsAction
     
-    enum CodingKeys: String, CodingKey {
-        case Data
-        case DataHQ
-        case type = "Type"
+    public struct ItemActionFieldsAction: Codable {
+        public let value: Int
     }
 }

@@ -63,7 +63,7 @@ public extension Item {
     var itemFood: Int? {
         let itemAction = fields.ItemAction
         let consumables = [844, 845, 846]
-        if consumables.contains(itemAction.fields.type){
+        if consumables.contains(itemAction.fields.Action.value){
             return itemAction.fields.Data[1] //ItemFood ID
         }
         
@@ -73,7 +73,7 @@ public extension Item {
     var itemEffectNQ: String? {
         let itemAction = fields.ItemAction.fields
         
-        switch itemAction.type {
+        switch itemAction.Action.value {
         case 847:
             return "Restores up to \(itemAction.Data[0])% of HP (\(itemAction.Data[1]) points max)."
         case 848:
@@ -86,7 +86,7 @@ public extension Item {
     var itemEffectHQ: String? {
         let itemAction = fields.ItemAction.fields
         
-        switch itemAction.type {
+        switch itemAction.Action.value {
         case 847:
             return "Restores up to \(itemAction.DataHQ[0])% of HP (\(itemAction.DataHQ[1]) points max)."
         case 848:

@@ -213,6 +213,7 @@ public enum Sheets: String, CaseIterable {
     case ContentEventItem
     case ContentExAction
     case ContentFinderCondition
+    case ContentFinderConditionRegion
     case ContentFinderConditionTransient
     case ContentGauge
     case ContentGaugeColor
@@ -358,6 +359,7 @@ public enum Sheets: String, CaseIterable {
     case EventItemTimeline
     case EventMountGimmickPathMove
     case EventPathMove
+    case EventSetDefine
     case EventSituationIconTooltip
     case EventSystemDefine
     case EventTutorial
@@ -621,6 +623,8 @@ public enum Sheets: String, CaseIterable {
     case Level
     case LinkRace
     case LiveMinigames
+    case LiveMinigamesDynamicDefine
+    case LiveMinigamesObjectEvent
     case LiveMinigamesTerritoryType
     case LivelyActorGroup
     case LoadingImage
@@ -679,6 +683,9 @@ public enum Sheets: String, CaseIterable {
     case MKDGrowData
     case MKDGrowDataSJob
     case MKDLore
+    case MKDRelicGrowth2Category
+    case MKDRelicGrowth2ContentList
+    case MKDRelicGrowth2Monster
     case MKDSupportJob
     case MKDTrait
     case MYCTemporaryItem
@@ -989,6 +996,7 @@ public enum Sheets: String, CaseIterable {
     case TelepoRelay
     case TerritoryAethernet
     case TerritoryAetheryteList
+    case TerritoryCandidates
     case TerritoryChatRule
     case TerritoryIntendedUse
     case TerritoryType
@@ -1052,6 +1060,8 @@ public enum Sheets: String, CaseIterable {
     case VVDNotebookSeries
     case VVDRouteData
     case VVDVariantAction
+    case VVDVoteRoute
+    case VVDVoteRouteLabel
     case ValentionSweetsMaterial
     case ValentionSweetsRecipe
     case Vase
@@ -1059,11 +1069,16 @@ public enum Sheets: String, CaseIterable {
     case WKSAchievement
     case WKSAchievementDailyDefine
     case WKSAchievementRewardItem
+    case WKSAethernet
+    case WKSAetheryte
+    case WKSAetheryteList
+    case WKSAetheryteObjectGroup
     case WKSCosmoToolClass
     case WKSCosmoToolCommonLevel
     case WKSCosmoToolDataAmount
     case WKSCosmoToolName
     case WKSCosmoToolPassiveBuff
+    case WKSCosmoToolUIRandomMsg
     case WKSDevGrade
     case WKSDevGradeBGSet
     case WKSEmergencyInfo
@@ -1110,6 +1125,9 @@ public enum Sheets: String, CaseIterable {
     case WKSSharedGroup
     case WKSTerritoryInfo
     case WKSText
+    case WKSTreasure
+    case WKSTreasureInfo
+    case WKSWarp
     case WKSZoneFloorCollision
     case Warp
     case WarpCondition
@@ -1132,7 +1150,6 @@ public enum Sheets: String, CaseIterable {
     case WeeklyLotBonusThreshold
     case World
     case WorldDCGroupType
-    case XBMPet
     case XPVPGroupActivity
     case YKW
     case YardCatalogCategory

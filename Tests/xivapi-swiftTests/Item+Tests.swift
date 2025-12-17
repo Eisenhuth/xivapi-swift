@@ -41,7 +41,7 @@ struct Item_Tests {
         #expect(item.additionalData?.sheet == nil)
         #expect(item.bonuses.isEmpty == true)
         #expect(item.itemFood == 662)
-        #expect(item.fields.ItemAction.fields.type == 846)
+        #expect(item.fields.ItemAction.fields.Action.value == 846)
         #expect(item.itemEffectNQ == nil)
         #expect(item.itemEffectHQ == nil)
         
