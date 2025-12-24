@@ -5,7 +5,7 @@ public struct ItemAction: Codable {
 }
 
 public struct ItemActionFields: Codable {
-    public let Data: [ValueStruct]
+    public let Data: [Int]
     public let DataHQ: [Int]
     public let Action: ValueStruct
 }

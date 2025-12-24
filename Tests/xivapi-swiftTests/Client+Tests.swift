@@ -36,7 +36,7 @@ struct Client_Tests {
     }
     
     @Test("Decode Item") func DecodeItem() async throws {
-        let item = try #require(await xivapi.getItem(44162))
+        let item = try #require(await xivapiPinned.getItem(44162))
         #expect(item.name == "Grade 2 Gemdraught of Strength")
     }
     
@@ -46,7 +46,7 @@ struct Client_Tests {
     }
     
     @Test("Decode Item /w named Sheet") func DecodeItem3() async throws {
-        let item = try #require(await xivapi.getSheet(name: "Item", id: 44162) as Item?)
+        let item = try #require(await xivapiPinned.getSheet(name: "Item", id: 44162) as Item?)
         #expect(item.name == "Grade 2 Gemdraught of Strength")
     }
     
@@ -68,7 +68,7 @@ struct Client_Tests {
     }
     
     @Test("Decode Recipe") func DecodeRecipe() async throws {
-        let recipe = try #require(await xivapi.getRecipe(35585))
+        let recipe = try #require(await xivapiPinned.getRecipe(35585))
         #expect(recipe.itemResult.row_id == 39727)
     }
     
@@ -95,7 +95,7 @@ struct Client_Tests {
     }
 
     @Test("Decode Stain") func DecodeStain() async throws {
-        let stain = try #require (await xivapi.getSheet(.Stain, id: 92) as Stain?)
+        let stain = try #require (await xivapiPinned.getSheet(.Stain, id: 92) as Stain?)
         #expect(stain.Item1?.name == "Gunmetal Black Dye")
         #expect(stain.Item2?.row_id == 0)
     }

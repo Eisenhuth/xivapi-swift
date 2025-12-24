@@ -126,4 +126,12 @@ struct Item_Tests {
         #expect(materia.priceLow == 197)
         #expect(materia.vendorSellPrice == 217)
     }
+    
+    @Test func ItemAction() async throws {
+        let itemAction = try #require(await xivapi.getSheet(.ItemAction, id: 1732) as ItemAction?)
+        
+        #expect(itemAction.fields.Action.value == 846)
+        #expect(itemAction.fields.Data == [49, 603, 30, 0, 0, 0, 0, 0, 0])
+        #expect(itemAction.fields.DataHQ == [49, 603, 30, 0, 0, 0, 0, 0, 0])
+    }
 }

@@ -64,7 +64,7 @@ public extension Item {
         let itemAction = fields.ItemAction
         let consumables = [844, 845, 846]
         if consumables.contains(itemAction.fields.Action.value){
-            return itemAction.fields.Data[1].value //ItemFood ID
+            return itemAction.fields.Data[1] //ItemFood ID
         }
         
         return nil
