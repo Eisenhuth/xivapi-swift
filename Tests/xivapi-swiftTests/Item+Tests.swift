@@ -99,6 +99,8 @@ struct Item_Tests {
         
         #expect(item.bonuses.contains(where: { $0.name == "Strength"  && $0.value == 403}))
         #expect(item.bonusesSpecial.contains(where: { $0.name == "Special Attribute"  && $0.value == 3}))
+        #expect(item.fields.ItemSpecialBonus.fields.Name == "Occult Crescent Effect:")
+        #expect(item.fields.ItemSeries.fields.Name == "")
     }
     
     @Test("Item: Eureka") func ItemElemental() async throws {
@@ -106,6 +108,15 @@ struct Item_Tests {
         
         #expect(item.bonuses.contains(where: { $0.name == "Strength"  && $0.value == 139}))
         #expect(item.bonusesSpecial.contains(where: { $0.name == "Elemental Bonus"  && $0.value == 131}))
+        #expect(item.fields.ItemSpecialBonus.fields.Name == "Eureka Effect: ")
+        #expect(item.fields.ItemSeries.fields.Name == "")
+    }
+    
+    @Test("Item: Handsaint Set") func ItemHandsaint() async throws {
+        let item = try #require(await xivapi.getItem(31807))
+        
+        #expect(item.fields.ItemSpecialBonus.fields.Name == "Set Bonus: ")
+        #expect(item.fields.ItemSeries.fields.Name == "Handsaint Accessories")
     }
     
     @Test func ItemMinimal() async throws {
