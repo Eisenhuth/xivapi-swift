@@ -147,9 +147,9 @@ public struct ItemFields: Codable {
     public let IsUntradable: Bool
     public let ItemAction: ItemAction
     public let ItemSearchCategory: ItemSearchCategory
-//    public let ItemSeries: ItemSeries?
+    public let ItemSeries: ItemSeries
 //    public let ItemSortCategory: ItemSortCategory?
-//    public let ItemSpecialBonus: ItemSpecialBonus?
+    public let ItemSpecialBonus: ItemSpecialBonus
 //    public let ItemSpecialBonusParam
     public let ItemUICategory: ItemUICategory
     public let LevelEquip: Int
