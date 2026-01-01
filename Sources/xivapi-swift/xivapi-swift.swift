@@ -11,11 +11,13 @@ public class xivapiClient: CrossObservableObject {
     public var version: String?
     public var baseUrl: URL = URL(string: "https://v2.xivapi.com/api")!
     public var automaticallyPin: Bool = false
+    public var language: XivLanguage?
         
-    public init(schema: String? = nil, version: String? = nil, baseUrl: URL? = nil, automaticallyPin: Bool = false) {
+    public init(schema: String? = nil, version: String? = nil, baseUrl: URL? = nil, automaticallyPin: Bool = false, language: XivLanguage? = nil) {
         self.schema = automaticallyPin ? verifiedSchema : schema
         self.version = automaticallyPin ? verifiedVersion : version
         self.baseUrl = baseUrl ?? self.baseUrl
+        self.language = language
     }
 }
 
@@ -136,6 +138,8 @@ public extension xivapiClient {
             if let version { components.queryItems?.append(URLQueryItem(name: "version", value: version)) }
         }
         
+        if let language { components.queryItems?.append(URLQueryItem(name: "language", value: language.rawValue)) }
+        
         return components.url!
     }
     
@@ -151,6 +155,7 @@ public extension xivapiClient {
         if let queryItems { components.queryItems?.append(contentsOf: queryItems) }
         if let schema { components.queryItems?.append(URLQueryItem(name: "schema", value: schema)) }
         if let version { components.queryItems?.append(URLQueryItem(name: "version", value: version)) }
+        if let language { components.queryItems?.append(URLQueryItem(name: "language", value: language.rawValue)) }
 
         return components.url!
     }
@@ -167,6 +172,7 @@ public extension xivapiClient {
         components.queryItems = [sheetsQuery, next == nil ? nameQuery : cursorQuery]
         if let schema { components.queryItems?.append(URLQueryItem(name: "schema", value: schema)) }
         if let version { components.queryItems?.append(URLQueryItem(name: "version", value: version)) }
+        if let language { components.queryItems?.append(URLQueryItem(name: "language", value: language.rawValue))}
         
         return components.url!
     }
@@ -186,6 +192,7 @@ public extension xivapiClient {
         }
         if let schema { components.queryItems?.append(URLQueryItem(name: "schema", value: schema)) }
         if let version { components.queryItems?.append(URLQueryItem(name: "version", value: version)) }
+        if let language { components.queryItems?.append(URLQueryItem(name: "language", value: language.rawValue)) }
         
         return components.url!
     }
