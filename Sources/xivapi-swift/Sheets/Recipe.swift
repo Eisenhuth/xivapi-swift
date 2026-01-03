@@ -53,6 +53,7 @@ public struct RecipeIngredient: Codable {
 }
 
 public struct CraftType: Codable {
+    public let row_id: Int
     public let fields: CraftTypeFields
     public var name: String {fields.Name}
     
