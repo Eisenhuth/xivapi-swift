@@ -20,6 +20,12 @@ struct Action_Tests {
         let action = try #require(await xivapi.getAction(7393))
         
         #expect(action.name == "The Blackest Night")
+        #expect(action.description == """
+            Creates a barrier around self or target party member that absorbs damage totaling 25% of target's maximum HP.
+            Duration: 7s
+            Grants Dark Arts when barrier is completely absorbed.
+            Dark Arts Effect: Consume Dark Arts instead of MP to execute Edge of Shadow or Flood of Shadow
+            """)
     }
     
     @Test("PvP: TBN") func PvPAction() async throws {

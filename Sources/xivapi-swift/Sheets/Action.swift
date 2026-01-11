@@ -2,6 +2,7 @@ import Foundation
 
 public struct Action: Codable {
     public let fields: ActionFields
+    public let transient: ActionTransientFields?
 }
 
 public struct ActionFields: Codable {
@@ -14,6 +15,10 @@ public struct ActionFields: Codable {
     public let MaxCharges: Int
     public let Name: String
     public let StatusGainSelf: XivStatus
+}
+
+public struct ActionTransientFields: Codable {
+    public let Description: String
 }
 
 public struct ActionCategory: Codable {
