@@ -4,12 +4,6 @@ public struct XivStatus: Codable {
     public let fields: StatusFields
 }
 
-public extension XivStatus {
-    var name: String { fields.Name }
-    var description: String { fields.Description }
-    var icon: Icon { fields.Icon }
-}
-
 public struct StatusFields: Codable {
     public let CanDispel: Bool
     public let CanStatusOff: Bool

@@ -5,13 +5,6 @@ public struct ContentFinderCondition: Codable {
     public let fields: ContentFinderConditionFields
 }
 
-public extension ContentFinderCondition {
-    var image: Icon { fields.Image }
-    var name: String { fields.Name }
-    var contentType: ContentType { fields.ContentType }
-    var description: String { fields.Transient.fields.Description }
-}
-
 public struct ContentFinderConditionFields: Codable {
     public let AcceptClassJobCategory: ClassJobCategory
     public let AllianceRoulette: Bool

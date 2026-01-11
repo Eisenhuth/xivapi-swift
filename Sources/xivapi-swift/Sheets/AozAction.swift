@@ -6,15 +6,6 @@ public struct AozAction: Codable {
     public let transient: AozActionTransientFields
 }
 
-public extension AozAction {
-    var name: String { fields.Action.name }
-    var number: Int { transient.Number }
-    var category: ActionCategory { fields.Action.category }
-    var actionIcon: Icon { fields.Action.icon }
-    var transientIcon: Icon { transient.Icon }
-    var description: String { transient.Description }
-}
-
 public struct AozActionFields: Codable {
     public let Action: Action
     public let Rank: Int

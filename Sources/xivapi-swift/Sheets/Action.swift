@@ -4,13 +4,6 @@ public struct Action: Codable {
     public let fields: ActionFields
 }
 
-public extension Action {
-    var name: String { fields.Name }
-    var icon: Icon { fields.Icon }
-    var category: ActionCategory { fields.ActionCategory }
-    //description??
-}
-
 public struct ActionFields: Codable {
     public let ActionCategory: ActionCategory
 //    public let ActionCombo: Action //TODO: work around recursion

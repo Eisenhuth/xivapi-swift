@@ -7,10 +7,6 @@ public struct TripleTriadCardRarity: Codable {
     public let fields: TripleTriadCardRarityFields
 }
 
-public extension TripleTriadCardRarity {
-    var stars: Int { fields.Stars }
-}
-
 public struct TripleTriadCardRarityFields: Codable {
     public let Stars: Int
 }
