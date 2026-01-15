@@ -8,6 +8,7 @@ struct LanguagesTests {
     let client_de = xivapiClient(automaticallyPin: true, language: .de)
     let client_fr = xivapiClient(automaticallyPin: true, language: .fr)
     let client_ja = xivapiClient(automaticallyPin: true, language: .ja)
+    let client_default = xivapiClient(automaticallyPin: true)
 
     @Test("Item: Languages") func ItemLanguages() async throws {
         let en = try #require(await client_en.getItem(36949))
@@ -67,5 +68,18 @@ struct LanguagesTests {
         #expect(de.results.count > 1)
         #expect(fr.results.count > 1)
         #expect(ja.results.count > 1)
+    }
+    
+    @Test("NpcYell: Languages") func NpcYellLanguages() async throws {
+        let multi = try #require(await client_default.getNpcYell(6492, languages: [.en, .de, .fr, .ja]))
+        let en = try #require(await client_en.getNpcYell(6492))
+        let de = try #require(await client_de.getNpcYell(6492))
+        let fr = try #require(await client_fr.getNpcYell(6492))
+        let ja = try #require(await client_ja.getNpcYell(6492))
+
+        #expect(multi.Text_en == en.Text)
+        #expect(multi.Text_de == de.Text)
+        #expect(multi.Text_fr == fr.Text)
+        #expect(multi.Text_ja == ja.Text)
     }
 }

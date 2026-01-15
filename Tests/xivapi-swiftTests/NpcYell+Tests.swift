@@ -24,10 +24,4 @@ struct NpcYell_Tests {
         #expect(quote.Text_chs == nil)
         #expect(quote.Text_kr == nil)
     }
-    
-    @Test func NpcYell2() async throws {
-        let quote = try #require(await xivapi.getNpcYell(6492))
-        #expect(quote.Text_en == "O hallowed moon,\nshine you the iron path!")
-    }
-
 }
