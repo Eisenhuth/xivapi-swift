@@ -75,6 +75,7 @@ public enum Sheets: String, CaseIterable {
     case AquariumFish
     case AquariumWater
     case ArchiveItem
+    case ArrayActionCheck
     case ArrayEventHandler
     case AttackType
     case Attract
@@ -92,6 +93,7 @@ public enum Sheets: String, CaseIterable {
     case BNpcCustomize
     case BNpcName
     case BNpcParts
+    case BNpcResist
     case BNpcState
     case BacklightColor
     case Ballista
@@ -255,6 +257,7 @@ public enum Sheets: String, CaseIterable {
     case CustomTalkDefineClient
     case CustomTalkNestHandlers
     case CustomTalkResident
+    case CustomTalkSimpleNest
     case CutActionTimeline
     case CutSceneIncompQuest
     case CutScreenImage
@@ -311,6 +314,7 @@ public enum Sheets: String, CaseIterable {
     case DynamicEvent
     case DynamicEventEnemyType
     case DynamicEventManager
+    case DynamicEventScreenImage
     case DynamicEventSet
     case DynamicEventSingleBattle
     case DynamicEventType
@@ -352,6 +356,7 @@ public enum Sheets: String, CaseIterable {
     case EventIconPriority
     case EventIconPriorityPair
     case EventIconType
+    case EventImage
     case EventItem
     case EventItemCastTimeline
     case EventItemCategory
@@ -369,6 +374,7 @@ public enum Sheets: String, CaseIterable {
     case ExVersion
     case ExportedGatheringPoint
     case ExportedSG
+    case ExtendedQuestCounter
     case ExtraCommand
     case FCActivity
     case FCActivityCategory
@@ -588,6 +594,7 @@ public enum Sheets: String, CaseIterable {
     case ItemActionTelepo
     case ItemBarterCheck
     case ItemBarterWarning
+    case ItemConvertTalk
     case ItemFood
     case ItemLevel
     case ItemOnceHqMasterpiece
@@ -608,6 +615,11 @@ public enum Sheets: String, CaseIterable {
     case JournalCategory
     case JournalGenre
     case JournalSection
+    case KTGBNpc
+    case KTGContent
+    case KTGParam
+    case KTGTypeWordProgram
+    case KTGTypeWordTextData
     case KineDriverOffGroup
     case Knockback
     case LFGExtensionContent
@@ -805,6 +817,9 @@ public enum Sheets: String, CaseIterable {
     case Pet
     case PetAction
     case PetMirage
+    case PhantomWeaponExTodo
+    case PhantomWeaponExTodoDetailTxt
+    case PhantomWeaponExTodoDetails
     case PhysicsGroup
     case PhysicsOffGroup
     case PhysicsParameter
@@ -860,6 +875,7 @@ public enum Sheets: String, CaseIterable {
     case QuestEffectType
     case QuestEquipModel
     case QuestEventAreaEntranceInfo
+    case QuestExtendedTodoBnpc
     case QuestHideReward
     case QuestLinkMarker
     case QuestLinkMarkerIcon
@@ -870,7 +886,9 @@ public enum Sheets: String, CaseIterable {
     case QuestRedoChapterUI
     case QuestRedoChapterUICategory
     case QuestRedoChapterUITab
+    case QuestRedoEvacuateWarp
     case QuestRedoIncompChapter
+    case QuestRedoInvalidTerritory
     case QuestRedoValidCustomTalk
     case QuestRepeatFlag
     case QuestRewardOther
@@ -977,7 +995,6 @@ public enum Sheets: String, CaseIterable {
     case SpecialShopItemCategory
     case Spectator
     case Stain
-    case StainTransient
     case StanceChange
     case Status
     case StatusHitEffect
@@ -1005,6 +1022,7 @@ public enum Sheets: String, CaseIterable {
     case TextCommand
     case TextCommandParam
     case TiltParam
+    case TinyCustomTalk
     case Title
     case TofuBg
     case TofuEditParam
@@ -1100,6 +1118,7 @@ public enum Sheets: String, CaseIterable {
     case WKSMechaEventRewardUI
     case WKSMechaFieldSearcher
     case WKSMechaLivelyActorGroup
+    case WKSMechaTank
     case WKSMissionInfo
     case WKSMissionLotteryCond
     case WKSMissionLotterySpecialCond
@@ -1112,6 +1131,7 @@ public enum Sheets: String, CaseIterable {
     case WKSMissionToDo
     case WKSMissionToDoEvalutionItem
     case WKSMissionToDoEvalutionRefin
+    case WKSMissionToDoRecover
     case WKSMissionToDoSuccessType
     case WKSMissionUnit
     case WKSNextPlanetGuidance
@@ -1134,6 +1154,7 @@ public enum Sheets: String, CaseIterable {
     case WarpLogic
     case WeaponTimeline
     case Weather
+    case WeatherCategory
     case WeatherGroup
     case WeatherRate
     case WeatherReportReplace
@@ -1150,6 +1171,28 @@ public enum Sheets: String, CaseIterable {
     case WeeklyLotBonusThreshold
     case World
     case WorldDCGroupType
+    case WorldPhysicalDC
+    case WorldRegionGroup
+    case XBMActionEffectType
+    case XBMActionTarget
+    case XBMBattleDetail
+    case XBMBattleDetailAction
+    case XBMContent
+    case XBMContentBattle
+    case XBMContentCamp
+    case XBMContentRandomStageEvent
+    case XBMContentStageEvent
+    case XBMContentStageEventMap
+    case XBMElement
+    case XBMEntrance
+    case XBMItem
+    case XBMItemType
+    case XBMPet
+    case XBMPetParamGrow
+    case XBMRandomStageEvent
+    case XBMScoreBonus
+    case XBMScoreRank
+    case XBMStageEventType
     case XPVPGroupActivity
     case YKW
     case YardCatalogCategory

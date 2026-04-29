@@ -46,12 +46,12 @@ public struct QuestFields: Codable {
     public let OptionalItemCountReward: [Int]
     public let OptionalItemIsHQReward: [Bool]
     public let OptionalItemReward: [Item]
-    public let OptionalItemStainReward: [Stain]
+//    public let OptionalItemStainReward: [Stain]
 //    public let OtherReward: QuestRewardOther
     public let PlaceName: PlaceName
 //    public let PreviousQuest: Quest //TODO: work around recursion
     public let Reward: [Item]
-    public let RewardStain: [Stain]
+//    public let RewardStain: [Stain]
     public let SatisfactionLevel: Int
 //    public let SatisfactionNpc: SatisfactionNpc
     public let TargetEnd: ENpcResident

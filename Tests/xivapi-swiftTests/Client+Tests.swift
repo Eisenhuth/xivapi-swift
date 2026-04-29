@@ -96,7 +96,7 @@ struct Client_Tests {
 
     @Test("Decode Stain") func DecodeStain() async throws {
         let stain = try #require (await xivapiPinned.getSheet(.Stain, id: 92) as Stain?)
-        #expect(stain.Item1?.name == "Gunmetal Black Dye")
+        #expect(stain.fields.Name == "Gunmetal Black")
         #expect(stain.Item2?.row_id == 0)
     }
     
