@@ -3,6 +3,7 @@ import Foundation
 public struct ContentFinderCondition: Codable {
     public let row_id: Int?
     public let fields: ContentFinderConditionFields
+    public let transient: ContentFinderConditionTransientFields
 }
 
 public struct ContentFinderConditionFields: Codable {
@@ -37,7 +38,9 @@ public struct ContentFinderConditionFields: Codable {
     public let ShortCode: String
     public let SortKey: Int
     public let TerritoryType: TerritoryType
-    public let Transient: ContentFinderConditionTransient
 }
 
+public struct ContentFinderConditionTransientFields: Codable {
+    public let Description: String
+}
 

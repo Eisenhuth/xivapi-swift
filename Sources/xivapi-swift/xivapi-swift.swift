@@ -34,6 +34,16 @@ public extension xivapiClient {
         return response
     }
     
+    func getSheet<T: Codable>(_ sheet: Sheets, queryItems: [URLQueryItem]? = nil) async -> [T]? {
+        await getSheet(sheet.rawValue, queryItems: queryItems)
+    }
+    
+    func getSheet<T: Codable>(_ name: String, queryItems: [URLQueryItem]? = nil) async -> [T]? {
+        let url = sheetUrl(name: name, queryItems: queryItems)
+        let response: MultiRows<T>? = await loadData(url)
+        return response?.rows
+    }
+    
     func getSheetRows<T: Codable>(_ sheet: Sheets, rows: [Int], queryItems: [URLQueryItem]? = nil) async -> [T]? {
         await getSheetRows(sheet.rawValue, rows: rows, queryItems: queryItems)
     }
@@ -145,6 +155,22 @@ public extension xivapiClient {
     
     func sheetUrl(sheet: Sheets, ids: [Int], queryItems: [URLQueryItem]? = nil, schema: String? = nil, version: String? = nil) -> URL {
         sheetUrl(name: sheet.rawValue, ids: ids, queryItems: queryItems, schema: schema, version: version)
+    }
+    
+    func sheetUrl(name: String, queryItems: [URLQueryItem]? = nil, schema: String? = nil, version: String? = nil) -> URL {
+        var components = URLComponents(string: "\(baseUrl)/sheet/\(name)")!
+        components.queryItems = []
+
+        if let queryItems { components.queryItems?.append(contentsOf: queryItems) }
+        if let schema { components.queryItems?.append(URLQueryItem(name: "schema", value: schema)) }
+        if let version { components.queryItems?.append(URLQueryItem(name: "version", value: version)) }
+        if let language { components.queryItems?.append(URLQueryItem(name: "language", value: language.rawValue)) }
+        
+        return components.url!
+    }
+    
+    func sheetUrl(sheet: Sheets, queryItems: [URLQueryItem]? = nil, schema: String? = nil, version: String? = nil) -> URL {
+        sheetUrl(name: sheet.rawValue, queryItems: queryItems, schema: schema, version: version)
     }
     
     func sheetUrl(name: String, ids: [Int], queryItems: [URLQueryItem]? = nil, schema: String? = nil, version: String? = nil) -> URL {
