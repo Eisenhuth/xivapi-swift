@@ -70,6 +70,13 @@ struct Item_Tests {
         #expect(item.isMarketable == false)
     }
     
+    @Test("Item: Weapon BST") func ItemWeaponBST() async throws {
+        let item = try #require(await xivapi.getItem(50732)) //Beast Tender's Hand Axe
+        
+        #expect(item.fields.Name == "Beast Tender's Hand Axe")
+        #expect(item.fields.ItemUICategory.fields?.Name == "Beastmaster's Arm")
+    }
+    
     @Test("Item: Food") func ItemFood() async throws {
         let item = try #require(await xivapi.getItem(44175)) //Roast Chicken
         let foodId = try #require(item.itemFood)
