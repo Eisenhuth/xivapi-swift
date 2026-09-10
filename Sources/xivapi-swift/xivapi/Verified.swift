@@ -1,2 +1,2 @@
 public let verifiedVersion = "7.56"
-public let verifiedSchema = "exdschema@2:rev:83e965d091116f895d5b17573cc5d12909a5f407"
+public let verifiedSchema = "exdschema@2:rev:e773c41a90aed788cf4c1c48469fa85618ef01fb"

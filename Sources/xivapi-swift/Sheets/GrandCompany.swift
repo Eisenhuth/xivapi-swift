@@ -7,7 +7,7 @@ public struct GrandCompany: Codable {
 
 public struct GrandCompanyFields: Codable {
     public let MonsterNote: ValueStruct
-    public let Name: String
+    public let Singular: String
 //    public let Unknown0: String
 //    public let Unknown1: String
 //    public let Unknown2: Int
